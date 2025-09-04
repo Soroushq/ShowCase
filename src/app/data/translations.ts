@@ -2,86 +2,73 @@ export interface Translation {
   [key: string]: string | Translation
 }
 
-export const translations: Record<string, Translation> = {
+export const translations = {
   en: {
     nav: {
       home: "Home",
-      work: "Work", 
+      work: "Work",
       about: "About",
-      contact: "Contact"
+      contact: "Contact",
     },
     hero: {
       greeting: "Hello, I'm",
-      title: "Full-Stack Developer",
-      subtitle: "Building Digital Experiences", 
-      description: "I create modern web applications with cutting-edge technologies, focusing on performance, user experience, and clean code.",
+      name:"soroush Qary Ivary",
+      title: "Frontend Developer",
+      subtitle: "Building Digital Experiences",
+      description: "Frontend Developer with expertise in scalable and dynamic web applications. Proficient in React, Next, Angular, using TypeScript with advanced skills in state management, responsive design, and TailwindCSS. Experienced in leading frontend development, integrating AI-driven solutions, and migrating legacy systems to modern frameworks. Strong understanding of Agile methodologies and API integration. Academic background includes a Master's in IT Management and a Bachelor's in Electrical Engineering.",
       cta: "View My Work",
-      ctaSecondary: "Get In Touch"
-    },
-    showcase: {
-      title: "Featured Projects",
-      subtitle: "Things I've built recently",
-      viewProject: "View Project",
-      viewCode: "View Code",
-      technologies: "Technologies Used",
-      allProjects: "View All Projects"
+      ctaSecondary: "Get In Touch",
     },
     about: {
       title: "About Me",
       subtitle: "Get to know me better",
-      description: "I'm a passionate full-stack developer with expertise in modern web technologies. I love creating beautiful, functional applications that solve real-world problems and deliver exceptional user experiences.",
-      background: "With over 5 years of experience in web development, I've had the privilege of working with startups and established companies to bring their digital visions to life. I specialize in React, Next.js, Node.js, and modern development practices.",
+      description: "I'm a passionate frontend developer with expertise in modern web technologies, creating scalable and responsive applications.",
+      background: "Experience leading teams and migrating legacy systems to modern frameworks with strong expertise in React, Next.js, and Node.js.",
       skills: "Skills & Expertise",
       experience: "Years Experience",
       projects: "Projects Completed",
-      clients: "Happy Clients"
+      clients: "Happy Clients",
     },
     contact: {
-      title: "Let's Work Together", 
+      title: "Let's Work Together",
       subtitle: "Have a project in mind?",
       description: "I'm always interested in new opportunities and challenges. Let's discuss how we can bring your ideas to life.",
       cta: "Start a Conversation",
       social: "Connect with me",
       email: "Send Email",
-      phone: "Call Me"
+      phone: "Call Me",
     },
     footer: {
       rights: "All rights reserved",
       built: "Built with Next.js & Tailwind CSS"
     }
   },
+
   fa: {
     nav: {
       home: "خانه",
       work: "نمونه کارها",
       about: "درباره من",
-      contact: "تماس"
+      contact: "تماس",
     },
     hero: {
       greeting: "سلام، من",
-      title: "توسعه‌دهنده فول‌استک",
-      subtitle: "ساخت تجربیات دیجیتال", 
-      description: "اپلیکیشن‌های وب مدرن با تکنولوژی‌های پیشرفته می‌سازم، با تمرکز بر عملکرد، تجربه کاربری و کد تمیز.",
+      name:"سروش قاری ایوری",
+      title: "توسعه‌دهنده فرانت‌اند",
+      subtitle: "ساخت تجربیات دیجیتال",
+      description: "توسعه‌دهنده فرانت‌اند با تخصص در طراحی و پیاده‌سازی وب اپلیکیشن‌های پویا و مقیاس‌پذیر. مسلط به React، Next, Angular و TypeScript آشنایی کامل به State Management، طراحی واکنش‌گرا و TailwindCSS. با تجربه در هدایت تیم‌های توسعه فرانت‌اند، ادغام راه‌حل‌های مبتنی بر هوش مصنوعی و مهاجرت سیستم‌های Legacy به فریم‌ورک‌های مدرن. آشنا به متدولوژی‌های Agile و یکپارچه‌سازی API. با تحصیلات کارشناسی ارشد مدیریت IT و کارشناسی مهندسی برق.",
       cta: "مشاهده نمونه کارها",
-      ctaSecondary: "تماس با من"
-    },
-    showcase: {
-      title: "پروژه‌های منتخب",
-      subtitle: "چیزهایی که اخیراً ساخته‌ام",
-      viewProject: "مشاهده پروژه",
-      viewCode: "مشاهده کد",
-      technologies: "تکنولوژی‌های استفاده شده",
-      allProjects: "مشاهده همه پروژه‌ها"
+      ctaSecondary: "تماس با من",
     },
     about: {
       title: "درباره من",
       subtitle: "بیشتر با من آشنا شوید",
-      description: "من یک توسعه‌دهنده فول‌استک پرشور با تخصص در تکنولوژی‌های مدرن وب هستم. عاشق ساخت اپلیکیشن‌های زیبا و کاربردی هستم که مسائل دنیای واقعی را حل کنند.",
-      background: "با بیش از ۵ سال تجربه در توسعه وب، افتخار همکاری با استارتاپ‌ها و شرکت‌های مستقر را داشته‌ام. در React، Next.js، Node.js و روش‌های مدرن توسعه تخصص دارم.",
+      description: "من یک توسعه‌دهنده فرانت‌اند پرشور با تخصص در تکنولوژی‌های مدرن وب هستم که اپلیکیشن‌های مقیاس‌پذیر و واکنش‌گرا می‌سازم.",
+      background: "تجربه مدیریت تیم‌های توسعه و مهاجرت سیستم‌های قدیمی به فریم‌ورک‌های مدرن با تخصص در React، Next.js و Node.js.",
       skills: "مهارت‌ها و تخصص‌ها",
       experience: "سال تجربه",
       projects: "پروژه تکمیل شده",
-      clients: "مشتری راضی"
+      clients: "مشتری راضی",
     },
     contact: {
       title: "بیایید با هم کار کنیم",
@@ -90,11 +77,11 @@ export const translations: Record<string, Translation> = {
       cta: "شروع گفتگو",
       social: "با من در ارتباط باشید",
       email: "ارسال ایمیل",
-      phone: "تماس تلفنی"
+      phone: "تماس تلفنی",
     },
     footer: {
       rights: "تمام حقوق محفوظ است",
-      built: "ساخته شده با Next.js و Tailwind CSS"
+      built: "ساخته شده با Next.js و Tailwind CSS",
     }
   }
 }
