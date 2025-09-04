@@ -7,7 +7,9 @@ import { ExternalLink, Github, Code, Eye, Sparkles } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
 import { useScrollAnimation, useParallax } from '@/app/hooks/useScrollAnimation'
 import { portfolioData } from '@/app/data/portfolio'
-import { generatePlaceholderImage, cn } from '@/app/lib/utils'
+import { cn } from '@/app/lib/utils'
+import Image from "next/image";
+
 
 export function ShowcaseSection() {
   const { t, dir } = useLanguage()
@@ -86,16 +88,17 @@ export function ShowcaseSection() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
+            <br />
             <div className="inline-flex items-center gap-4 px-8 py-4 bg-blue-50/80 dark:bg-teal-900/30 backdrop-blur-sm rounded-full border border-blue-200/50 dark:border-teal-700/30 transition-colors duration-500">
               <Sparkles className="w-6 h-6 text-blue-600 dark:text-teal-400 transition-colors duration-500" />
               <span className={`text-lg font-semibold text-blue-700 dark:text-teal-300 transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
-                {t('showcase.subtitle')}
+                {t('projects')}
               </span>
             </div>
             
-            <h2 className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight ${dir === 'rtl' ? 'font-sahel' : ''}`}>
+            <h2 className={`text-xl sm:text-2xl lg:text-4xl xl:text-5xl font-black tracking-tight ${dir === 'rtl' ? 'font-sahel' : ''}`}>
               <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent transition-colors duration-500">
-                {t('showcase.title')}
+                {t('My samples and previous works')}
               </span>
             </h2>
           </div>
@@ -119,12 +122,8 @@ export function ShowcaseSection() {
                   
                   {/* Project Image */}
                   <div className="relative overflow-hidden h-64 sm:h-72">
-                    <div
-                      className="w-full h-full bg-cover bg-center transition-all duration-700 group-hover:scale-110"
-                      style={{
-                        backgroundImage: `url(${generatePlaceholderImage(500, 300, project.title)})`,
-                      }}
-                    />
+                   <Image src={project.image} alt={`${project.title} screenshot`} width={500} height={300} className="object-cover" />
+
                     
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />

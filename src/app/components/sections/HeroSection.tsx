@@ -7,7 +7,6 @@ import { useLanguage } from '@/app/hooks/useLanguage'
 import { useParallax } from '@/app/hooks/useScrollAnimation'
 import { scrollToElement } from '@/app/lib/utils'
 import { personalInfo } from '@/app/data/portfolio'
-
 export function HeroSection() {
   const { t, dir } = useLanguage()
   const [isVisible, setIsVisible] = useState(false)
@@ -62,7 +61,7 @@ export function HeroSection() {
       <div className="relative z-10 w-full min-h-screen flex items-center justify-center px-8 sm:px-16 lg:px-32 xl:px-48" dir={dir}>
         
         {/* Centered Content Container */}
-        <div className="max-w-6xl mx-auto text-center space-y-16">
+        <div className="max-w-7xl mx-auto text-center space-y-24">
           
           {/* Content with Glass Effect */}
           <div 
@@ -72,7 +71,7 @@ export function HeroSection() {
                 : 'opacity-0 translate-y-12 scale-95'
             }`}
           >
-            
+            <br />
             {/* Greeting Badge */}
             <div className={`inline-flex items-center gap-4 px-8 py-4 mb-16 bg-purple-50/80 dark:bg-green-900/30 backdrop-blur-sm rounded-full border border-purple-200/50 dark:border-green-700/30 transition-all duration-700 delay-200 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -82,21 +81,21 @@ export function HeroSection() {
                 {t('hero.greeting')}
               </span>
             </div>
-
+<br /><br />
             {/* Name - More Space */}
             <div className="mb-20">
-              <h1 className={`text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black mb-8 tracking-tight transition-all duration-700 delay-300 ${
+              <h1 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black mb-8 tracking-tight transition-all duration-700 delay-300 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               } ${dir === 'rtl' ? 'font-sahel' : ''}`}>
                 <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-none transition-colors duration-500">
-                  {personalInfo.name}
+                  {t('hero.name')}
                 </span>
               </h1>
             </div>
 
             {/* Title - More Space */}
-            <div className="mb-20">
-              <h2 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold transition-all duration-700 delay-400 ${
+            <div className="my-20">
+              <h2 className={`text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold transition-all duration-700 delay-400 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               } ${dir === 'rtl' ? 'font-sahel' : ''}`}>
                 <span className="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-700 dark:from-green-400 dark:via-green-300 dark:to-green-500 bg-clip-text text-transparent transition-colors duration-500">
@@ -104,10 +103,10 @@ export function HeroSection() {
                 </span>
               </h2>
             </div>
-
+<br />
             {/* Subtitle - More Space */}
             <div className="mb-24">
-              <h3 className={`text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-600 dark:text-gray-300 transition-all duration-700 delay-500 ${
+              <h3 className={`text-lg sm:text-xl lg:text-2xl font-semibold text-gray-600 dark:text-gray-300 transition-all duration-700 delay-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               } ${dir === 'rtl' ? 'font-sahel' : ''}`}>
                 {t('hero.subtitle')}
@@ -115,8 +114,8 @@ export function HeroSection() {
             </div>
 
             {/* Description - More Space */}
-            <div className="mb-28">
-              <p className={`text-xl sm:text-2xl max-w-4xl mx-auto leading-relaxed text-gray-600 dark:text-gray-300 transition-all duration-700 delay-600 ${
+            <div className="my-28 pt-32">
+              <p className={`text-lg sm:text-xl max-w-5xl leading-relaxed text-gray-600 dark:text-gray-300 transition-all duration-700 delay-600 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               } ${dir === 'rtl' ? 'font-sahel' : ''}`}>
                 {t('hero.description')}
@@ -147,42 +146,42 @@ export function HeroSection() {
                 {t('hero.ctaSecondary')}
               </Button>
             </div>
-
+<br />
             {/* Social Links - More Space */}
-            <div className={`flex justify-center ${dir === 'rtl' ? 'space-x-reverse' : ''} space-x-10 transition-all duration-700 delay-800 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              {[
-                { icon: Github, href: "https://github.com/soroushq", label: "GitHub" },
-                { icon: Linkedin, href: "https://linkedin.com/in/yourusername", label: "LinkedIn" },
-                { icon: Mail, href: "mailto:your.email@example.com", label: "Email" }
-              ].map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith('http') ? "_blank" : undefined}
-                  rel={href.startsWith('http') ? "noopener noreferrer" : undefined}
-                  className="group p-6 rounded-2xl bg-gray-50/80 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/30 hover:bg-purple-50 dark:hover:bg-green-900/30 hover:border-purple-300 dark:hover:border-green-600 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-green-400 transform hover:scale-110 hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-xl"
-                  aria-label={label}
+                  <div
+                  className={`flex justify-center gap-8 ${dir === 'rtl' ? 'space-x-reverse' : ''} `}
+                  aria-label={t('social links')}
                 >
-                  <Icon className="w-8 h-8" />
-                </a>
-              ))}
-            </div>
+                  {[
+                    { icon: Github, href: personalInfo.github, label: 'GitHub' },
+                    { icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
+                    { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
+                  ].map(({ icon: Icon, href, label }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="group inline-flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:bg-purple-200 dark:hover:bg-green-700 hover:border-purple-400 dark:hover:border-green-500 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-green-400 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-transparent"
+                    >
+                      <Icon className="w-10 h-10" />
+                    </a>
+                  ))}
+                </div>
+                    <br />
+                          {/* Scroll Indicator */}
+                  <button
+                    onClick={() => scrollToElement('showcase')}
+                    className={` group p-6 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-purple-100/30 dark:hover:bg-green-900 transition-all duration-300 animate-bounce hover:animate-none ${
+                      isVisible ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    aria-label="Scroll down to showcase section"
+                  >
+                    <ChevronDown className="w-10 h-10 text-purple-600 dark:text-green-400 transition-colors duration-300" />
+                  </button>
           </div>
         </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2">
-        <button
-          onClick={() => scrollToElement('showcase')}
-          className={`group p-5 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-purple-100/30 dark:hover:bg-green-900/30 transition-all duration-300 animate-bounce hover:animate-none ${
-            isVisible ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <ChevronDown className="w-8 h-8 text-purple-600 dark:text-green-400 transition-colors duration-500" />
-        </button>
       </div>
     </section>
   )
