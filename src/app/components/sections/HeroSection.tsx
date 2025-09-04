@@ -6,7 +6,7 @@ import { ChevronDown, Github, Linkedin, Mail, ArrowRight } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
 import { useParallax } from '@/app/hooks/useScrollAnimation'
 import { scrollToElement } from '@/app/lib/utils'
-import { personalInfo, socialLinks } from '@/app/data/portfolio'
+import { personalInfo } from '@/app/data/portfolio'
 export function HeroSection() {
   const { t, dir } = useLanguage()
   const [isVisible, setIsVisible] = useState(false)

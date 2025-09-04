@@ -28,13 +28,19 @@ export function useLanguageState(): LanguageContextType {
 
   const t = (key: string): string => {
     const keys = key.split('.')
-    let value: any = translations[language]
-    
+    let value: unknown = translations[language]
+
     for (const k of keys) {
-      value = value?.[k]
+      if (typeof value === 'object' && value !== null && k in value) {
+        // Index to next nested value
+        // @ts-expect-error it is needed indeed
+        value = value[k]
+      } else {
+        return key // fallback to key itself if path invalid
+      }
     }
-    
-    return value || key
+
+    return typeof value === 'string' ? value : key
   }
 
   const dir: Direction = language === 'fa' ? 'rtl' : 'ltr'
@@ -48,7 +54,7 @@ export function useLanguageState(): LanguageContextType {
     language,
     setLanguage,
     t,
-    dir
+    dir,
   }
 }
 

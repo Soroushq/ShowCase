@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cn } from '@/app/lib/utils'
 import { ButtonHTMLAttributes, forwardRef, ReactElement, cloneElement, isValidElement } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
@@ -35,30 +36,25 @@ export interface ButtonProps
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, children, ...props }, ref) => {
     const buttonClass = cn(buttonVariants({ variant, size, className }))
-    
+
     if (asChild && isValidElement(children)) {
-      // Type assertion to handle the child element properly
       const child = children as ReactElement<any>
-      
+      const childProps = child.props || {}
       return cloneElement(child, {
-        className: cn(buttonClass, child.props?.className),
-        ref,
         ...props,
-        ...child.props, // Preserve existing child props
+        ...(typeof childProps === 'object' ? childProps : {}),
+        className: cn(buttonClass, (childProps as any)?.className),
       })
     }
 
     return (
-      <button
-        className={buttonClass}
-        ref={ref}
-        {...props}
-      >
+      <button className={buttonClass} ref={ref} {...props}>
         {children}
       </button>
     )
   }
 )
+
 Button.displayName = 'Button'
 
 export { Button, buttonVariants }

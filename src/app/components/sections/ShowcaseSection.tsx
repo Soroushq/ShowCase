@@ -7,7 +7,9 @@ import { ExternalLink, Github, Code, Eye, Sparkles } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
 import { useScrollAnimation, useParallax } from '@/app/hooks/useScrollAnimation'
 import { portfolioData } from '@/app/data/portfolio'
-import { generatePlaceholderImage, cn } from '@/app/lib/utils'
+import { cn } from '@/app/lib/utils'
+import Image from "next/image";
+
 
 export function ShowcaseSection() {
   const { t, dir } = useLanguage()
@@ -120,11 +122,7 @@ export function ShowcaseSection() {
                   
                   {/* Project Image */}
                   <div className="relative overflow-hidden h-64 sm:h-72">
-                    <img 
-                      src={project.image} 
-                      alt={`${project.title} Screenshot`}
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                    />
+                   <Image src={project.image} alt={`${project.title} screenshot`} width={500} height={300} className="object-cover" />
 
                     
                     {/* Gradient Overlay */}
