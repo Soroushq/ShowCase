@@ -1,5 +1,5 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from './components/providers/ThemeProvider'
 
@@ -7,7 +7,7 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800', '900'], // optional for full range
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
 })
 
 export const metadata: Metadata = {
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
   description: 'Showcasing modern web applications with cutting-edge technologies. Full-stack developer specializing in React, Next.js, and innovative digital experiences.',
   keywords: ['portfolio', 'web developer', 'react', 'nextjs', 'full-stack'],
   authors: [{ name: 'Your Name' }],
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   openGraph: {
     type: 'website',
@@ -24,6 +23,17 @@ export const metadata: Metadata = {
     description: 'Modern portfolio showcase for a full-stack developer',
     siteName: 'Portfolio',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Creative Developer Portfolio',
+    description: 'Modern portfolio showcase for a full-stack developer',
+  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 }
 
 export default function RootLayout({
