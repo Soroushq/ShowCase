@@ -252,3 +252,34 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add custom dark and light backgrounds */
+:root {
+  --bg-primary: #ffffff; /* Light mode background */
+  --bg-secondary: #f9fafb;
+  --text-color: #111827;
+}
+
+html.dark {
+  --bg-primary: #111827; /* Dark mode background */
+  --bg-secondary: #1f2937;
+  --text-color: #f3f4f6;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

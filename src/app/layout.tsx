@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from './components/providers/ThemeProvider'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
@@ -12,7 +12,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Creative Developer Portfolio | Modern Web Development',
-  description: 'Showcasing modern web applications with cutting-edge technologies. Full-stack developer specializing in React, Next.js, and innovative digital experiences.',
+  description:
+    'Showcasing modern web applications with cutting-edge technologies. Full-stack developer specializing in React, Next.js, and innovative digital experiences.',
   keywords: ['portfolio', 'web developer', 'react', 'nextjs', 'full-stack'],
   authors: [{ name: 'Your Name' }],
   robots: 'index, follow',
@@ -42,15 +43,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
-      <body className={`${inter.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange={false}
-          storageKey="portfolio-theme"
-        >
+    <html
+      lang="en"
+      suppressHydrationWarning // Prevent mismatch when theme changes on load
+      className={inter.variable}
+    >
+      <body
+        className={`${inter.className} antialiased transition-colors duration-300`}
+        suppressHydrationWarning
+      >
+        {/* ThemeProvider wraps the entire app */}
+        <ThemeProvider>
           {children}
         </ThemeProvider>
       </body>
