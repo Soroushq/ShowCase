@@ -214,9 +214,9 @@ export function ShowcaseSection() {
               </div>
             ))}
           </div>
-
+<br /><br /><br /><br /><br />
           {/* View All Projects Button */}
-          <div className={`text-center space-y-8 transition-all duration-1000 delay-1000 ${
+          {/* <div className={`text-center space-y-8 transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <div className="relative inline-block">
@@ -230,17 +230,17 @@ export function ShowcaseSection() {
                   <ExternalLink className={`w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 ${dir === 'rtl' ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 dark:from-green-600/20 dark:to-teal-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Button>
+              </Button> */}
               
               {/* Floating Elements around Button */}
-              <div className="absolute -top-2 -right-2 w-4 h-4 bg-purple-400 dark:bg-green-400 rounded-full animate-pulse opacity-70" />
+              {/* <div className="absolute -top-2 -right-2 w-4 h-4 bg-purple-400 dark:bg-green-400 rounded-full animate-pulse opacity-70" />
               <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-blue-400 dark:bg-teal-400 rounded-full animate-pulse opacity-60" style={{ animationDelay: '1s' }} />
             </div>
-            
-            <p className={`text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
+             */}
+            {/* <p className={`text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
               Explore more of my work and see how I bring ideas to life through code and design.
-            </p>
-          </div>
+            </p> */}
+          {/* </div> */}
         </div>
       </div>
     </section>

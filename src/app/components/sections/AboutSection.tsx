@@ -113,6 +113,7 @@ export function AboutSection() {
                 {t('about.subtitle')}
               </span>
             </div>
+            <br />
             
             <h2 className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight ${dir === 'rtl' ? 'font-sahel' : ''}`}>
               <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent transition-colors duration-500">
@@ -120,7 +121,7 @@ export function AboutSection() {
               </span>
             </h2>
           </div>
-
+<br /><br /><br />
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-24 lg:gap-32 items-start">
             
@@ -140,6 +141,7 @@ export function AboutSection() {
                   </p>
                 </div>
               </div>
+              <br />
 
               {/* Enhanced Stats Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -166,7 +168,7 @@ export function AboutSection() {
                       </div>
                       
                       {/* Value */}
-                      <div className={`text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-6 text-center transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
+                      <div className={`text-xl sm:text-3xl font-black text-gray-900 dark:text-white mb-6 text-center transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
                         {stat.value}+
                       </div>
                       
@@ -185,11 +187,11 @@ export function AboutSection() {
               isVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${dir === 'rtl' ? '-translate-x-8' : 'translate-x-8'}`
             }`}>
               
-              <div className="backdrop-blur-sm bg-white/20 dark:bg-black/20 rounded-3xl p-16 border border-white/30 dark:border-white/10 shadow-xl transition-colors duration-500">
+              <div className="backdrop-blur-sm bg-white/20 dark:bg-black/20 rounded-3xl p-24 border border-white/30 dark:border-white/10 shadow-xl transition-colors duration-500">
                 
-                <h3 className={`text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-16 transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel text-right' : ''}`}>
+                <h3 className={`text-2xl sm:text-3xl font-black text-gray-900 dark:text-white mb-16 transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel text-right' : ''}`}>
                   {t('about.skills')}
-                </h3>
+                </h3><br />
                 
                 <div className="space-y-12">
                   {skills.map((skill, index) => (
@@ -202,17 +204,17 @@ export function AboutSection() {
                     >
                       {/* Skill Header */}
                       <div className={`flex justify-between items-center mb-6 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                        <span className={`text-xl sm:text-2xl font-bold text-gray-900 dark:text-white transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
+                        <span className={`text-md sm:text-lg font-bold text-gray-900 dark:text-white transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
                           {skill.name}
                         </span>
-                        <span className={`px-5 py-2 rounded-full text-base font-bold bg-purple-100 dark:bg-green-900/30 text-purple-700 dark:text-green-300 transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
+                        <span className={`px-5 py-2 rounded-full text-base font-lights sm:font-bold bg-purple-100 dark:bg-green-900/30 text-purple-700 dark:text-green-300 transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
                           {animatedSkills[skill.name] || 0}%
                         </span>
                       </div>
                       
                       {/* Skill Bar Container */}
                       <div className="relative">
-                        <div className="w-full h-5 bg-gray-200/50 dark:bg-gray-700/30 rounded-full overflow-hidden backdrop-blur-sm transition-colors duration-500">
+                        <div className="w-full h-2 sm:h-5 bg-gray-200/50 dark:bg-gray-700/30 rounded-full overflow-hidden backdrop-blur-sm transition-colors duration-500">
                           <div
                             className="h-full bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 dark:from-green-400 dark:via-green-500 dark:to-green-600 rounded-full relative overflow-hidden transition-all duration-2000 ease-out"
                             style={{
@@ -226,8 +228,8 @@ export function AboutSection() {
                         </div>
                         
                         {/* Skill Category Badge */}
-                        <div className={`absolute ${dir === 'rtl' ? 'left-0' : 'right-0'} -top-12`}>
-                          <span className={`text-sm px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 font-medium transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
+                        <div className={`absolute ${dir === 'rtl' ? 'left-0' : 'right-0'} -top-2 sm:-top-12`}>
+                          <span className={`text-xs sm:text-sm px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 font-medium transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
                             {skill.category}
                           </span>
                         </div>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Button } from '@/app/components/ui/Button'
-import { ChevronDown, Github, Linkedin, Mail, ArrowRight } from 'lucide-react'
+import { ChevronDown, Github, Linkedin, Phone, Mail, ArrowRight } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
 import { useParallax } from '@/app/hooks/useScrollAnimation'
 import { scrollToElement } from '@/app/lib/utils'
@@ -82,7 +82,7 @@ export function HeroSection() {
                 {t('hero.greeting')}
               </span>
             </div>
-
+<br />
             {/* Name */}
             <h1
               className={`text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black mb-6 tracking-tight transition-all duration-700 delay-300 ${
@@ -93,7 +93,7 @@ export function HeroSection() {
                 {t('hero.name')}
               </span>
             </h1>
-
+<br />
             {/* Title */}
             <h2
               className={`text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-8 transition-all duration-700 delay-400 ${
@@ -104,7 +104,7 @@ export function HeroSection() {
                 {t('hero.title')}
               </span>
             </h2>
-
+<br />
             {/* Subtitle */}
             <h3
               className={`text-lg sm:text-xl lg:text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-10 transition-all duration-700 delay-500 ${
@@ -113,7 +113,6 @@ export function HeroSection() {
             >
               {t('hero.subtitle')}
             </h3>
-
             {/* Description */}
             <p
               className={`text-lg sm:text-xl max-w-4xl mx-auto leading-relaxed text-gray-700 dark:text-gray-300 mb-12 transition-all duration-700 delay-600 ${
@@ -122,7 +121,7 @@ export function HeroSection() {
             >
               {t('hero.description')}
             </p>
-
+<br />
             {/* CTA Buttons */}
             <div
               className={`flex flex-col sm:flex-row gap-6 justify-center mb-14 transition-all duration-700 delay-700 ${
@@ -159,7 +158,7 @@ export function HeroSection() {
                 {t('hero.ctaSecondary')}
               </Button>
             </div>
-
+<br />
             {/* Social Links */}
             <div
               className={`flex justify-center gap-8 ${
@@ -171,6 +170,7 @@ export function HeroSection() {
                 { icon: Github, href: personalInfo.github, label: 'GitHub' },
                 { icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
                 { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
+                { icon:Phone, href:`tel: ${personalInfo.phone}`, label: 'Phone'},
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -184,7 +184,7 @@ export function HeroSection() {
                 </a>
               ))}
             </div>
-
+<br />
             {/* Scroll Indicator */}
             <button
               onClick={() => scrollToElement('showcase')}

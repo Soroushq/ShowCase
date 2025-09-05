@@ -79,22 +79,24 @@ export function ContactSection() {
           {/* Header */}
           <div
             ref={ref}
-            className={`text-center transition-all duration-1000 ${
+            className={`text-center justify-center transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
             }`}
           >
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-green-100 rounded-full border border-green-300 dark:bg-green-800 dark:border-green-600">
+            <div className="inline-flex items-center text-center gap-2 px-6 py-3 bg-green-100 rounded-full border border-green-300 dark:bg-green-800 dark:border-green-600">
               <Sparkles className="text-green-600 dark:text-green-300" />
-              <span className={`text-lg font-semibold text-green-700 dark:text-green-300 ${dir === "rtl" ? "font-sahel" : ""}`}>
+              <span className={`text-lg text-center font-semibold text-green-700 dark:text-green-300 ${dir === "rtl" ? "font-sahel" : ""}`}>
                 {t("contact.subtitle")}
               </span>
-            </div>
+            </div><br /><br />
             <h2 className={`text-5xl font-extrabold tracking-tight leading-tight ${dir === "rtl" ? "font-sahel" : ""}`}>
               <span className="bg-gradient-to-r from-gray-900 to-black dark:from-white dark:to-gray-200 bg-clip-text text-transparent">{t("contact.title")}</span>
             </h2>
-            <p className={`mt-6 max-w-xl mx-auto text-gray-700 dark:text-gray-300 text-lg ${dir === "rtl" ? "font-sahel" : ""}`}>
+            <br />
+            <p className={`mt-6 mx-auto text-gray-700 dark:text-gray-300 text-lg ${dir === "rtl" ? "font-sahel" : ""}`}>
               {t("contact.description")}
             </p>
+            <br />
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 md:gap-24">
@@ -107,7 +109,7 @@ export function ContactSection() {
               {/* Email Card */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-green-600 dark:text-green-300">
+                  <CardTitle className="flex items-center m-5 gap-2 text-green-600 dark:text-green-300">
                     <Mail /> {t("contact.email")}
                   </CardTitle>
                 </CardHeader>
