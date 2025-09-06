@@ -11,23 +11,23 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Creative Developer Portfolio | Modern Web Development',
+  title: 'Soroush Qary Ivary Portfolio',
   description:
-    'Showcasing modern web applications with cutting-edge technologies. Full-stack developer specializing in React, Next.js, and innovative digital experiences.',
+    'Showcasing previous works, capabilities, contact info. Full-stack developer specializing in React, Next.js, and innovative digital experiences.',
   keywords: ['portfolio', 'web developer', 'react', 'nextjs', 'full-stack'],
-  authors: [{ name: 'Your Name' }],
+  authors: [{ name: 'Soroush Qary Ivary' }],
   robots: 'index, follow',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'Creative Developer Portfolio',
-    description: 'Modern portfolio showcase for a full-stack developer',
+    title: 'Soroush Qary Ivary Portfolio',
+    description: 'portfolio showcase for full-stackish front-end developer',
     siteName: 'Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Creative Developer Portfolio',
-    description: 'Modern portfolio showcase for a full-stack developer',
+    title: 'Soroush Qary Ivary Portfolio',
+    description: 'portfolio showcase for full-stackish front-end developer',
   },
 }
 
