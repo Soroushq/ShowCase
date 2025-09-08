@@ -118,7 +118,7 @@ export function ShowcaseSection() {
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                <Card className="h-full overflow-hidden backdrop-blur-sm bg-white/20 dark:bg-black/20 border-white/30 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 group-hover:-translate-y-2">
+                <Card className="h-full max-w-85 sm:max-w-fit overflow-hidden backdrop-blur-sm bg-white/20 dark:bg-black/20 border-white/30 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 group-hover:-translate-y-2">
                   
                   {/* Project Image */}
                   <div className="relative overflow-hidden h-64 sm:h-72">
@@ -129,7 +129,7 @@ export function ShowcaseSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                     
                     {/* Action Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-br from-purple-600/90 to-blue-600/90 dark:from-green-600/90 dark:to-teal-600/90 flex items-center justify-center transition-all duration-500 ${
+                    <div className={`absolute inset-0 bg-gradient-to-br from-purple-800/90 to-cyan-700/90 dark:from-cyan-900/90 dark:to-teal-500/90 flex items-center justify-center transition-all duration-500 ${
                       hoveredProject === project.id 
                         ? 'opacity-100 backdrop-blur-sm' 
                         : 'opacity-0 translate-y-4'
@@ -173,10 +173,10 @@ export function ShowcaseSection() {
 
                   {/* Card Content */}
                   <CardHeader className="p-8">
-                    <CardTitle className={`text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-green-400 transition-colors duration-300 ${dir === 'rtl' ? 'font-sahel text-right' : ''}`}>
+                    <CardTitle className={`text-lg sm:text-2xl font-bold text-gray-900 dark:text-white mx-6 mb-4 group-hover:text-purple-600 dark:group-hover:text-green-400 transition-colors duration-300 ${dir === 'rtl' ? 'font-sahel text-right' : ''}`}>
                       {project.title}
                     </CardTitle>
-                    <CardDescription className={`text-lg text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel text-right' : ''}`}>
+                    <CardDescription className={`text-sm sm:text-lg  text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel text-right' : ''}`}>
                       {project.description}
                     </CardDescription>
                   </CardHeader>
@@ -187,7 +187,7 @@ export function ShowcaseSection() {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className={`px-4 py-2 text-sm font-medium bg-purple-100/80 dark:bg-green-900/30 text-purple-700 dark:text-green-300 rounded-xl border border-purple-200/50 dark:border-green-700/30 transition-all duration-300 hover:scale-105 hover:bg-purple-200/80 dark:hover:bg-green-800/40 ${dir === 'rtl' ? 'font-sahel' : ''}`}
+                          className={`px-4 py-2 text-xs font-medium bg-purple-100/80 dark:bg-green-900/30 text-purple-700 dark:text-green-300 rounded-xl border border-purple-200/50 dark:border-green-700/30 transition-all duration-300 hover:scale-105 hover:bg-purple-200/80 dark:hover:bg-green-800/40 ${dir === 'rtl' ? 'font-sahel' : ''}`}
                         >
                           {tech}
                         </span>
@@ -215,32 +215,7 @@ export function ShowcaseSection() {
             ))}
           </div>
 <br /><br /><br /><br /><br />
-          {/* View All Projects Button */}
-          {/* <div className={`text-center space-y-8 transition-all duration-1000 delay-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
-            <div className="relative inline-block">
-              <Button 
-                variant="outline" 
-                size="lg"
-                className={`relative overflow-hidden px-12 py-6 text-xl font-semibold rounded-2xl border-2 border-purple-300 dark:border-green-400 text-purple-700 dark:text-green-300 hover:bg-purple-50 dark:hover:bg-green-900/20 hover:border-purple-400 dark:hover:border-green-300 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm bg-white/20 dark:bg-black/20 ${dir === 'rtl' ? 'font-sahel' : ''}`}
-              >
-                <span className="relative z-10 flex items-center gap-3">
-                  {t('showcase.allProjects')}
-                  <ExternalLink className={`w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 ${dir === 'rtl' ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 dark:from-green-600/20 dark:to-teal-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Button> */}
-              
-              {/* Floating Elements around Button */}
-              {/* <div className="absolute -top-2 -right-2 w-4 h-4 bg-purple-400 dark:bg-green-400 rounded-full animate-pulse opacity-70" />
-              <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-blue-400 dark:bg-teal-400 rounded-full animate-pulse opacity-60" style={{ animationDelay: '1s' }} />
-            </div>
-             */}
-            {/* <p className={`text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors duration-500 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
-              Explore more of my work and see how I bring ideas to life through code and design.
-            </p> */}
-          {/* </div> */}
+   
         </div>
       </div>
     </section>

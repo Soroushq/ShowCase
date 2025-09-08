@@ -59,7 +59,7 @@ export function HeroSection() {
 
       {/* Main Content */}
       <div
-        className="relative z-10 w-full min-h-screen flex items-center justify-center px-6 sm:px-10 lg:px-20 xl:px-32"
+        className="relative z-10 w-full min-h-screen  flex items-center justify-center sm:px-10 lg:px-20 xl:px-32"
         dir={dir}
       >
         <div className="max-w-7xl mx-auto text-center space-y-16 sm:space-y-20">
@@ -85,8 +85,8 @@ export function HeroSection() {
 <br />
             {/* Name */}
             <h1
-              className={`text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black mb-6 tracking-tight transition-all duration-700 delay-300 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              className={`text-2xl sm:text-4xl lg:text-5xl xl:text-7xl font-black mb-6 tracking-tight transition-all duration-700 delay-300 ${
+                isVisible ? 'opacity-100 translate-y-6' : 'opacity-0 translate-y-8'
               } ${dir === 'rtl' ? 'font-sahel' : ''}`}
             >
               <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-none transition-colors duration-500">
@@ -114,13 +114,14 @@ export function HeroSection() {
               {t('hero.subtitle')}
             </h3>
             {/* Description */}
+            <div className="max-w-83 sm:max-w-4xl">
             <p
-              className={`text-lg sm:text-xl max-w-4xl mx-auto leading-relaxed text-gray-700 dark:text-gray-300 mb-12 transition-all duration-700 delay-600 ${
+              className={`text-sm sm:text-xl max-w-2xl sm:max-w-4xl leading-relaxed text-gray-700 dark:text-gray-300 mb-12 transition-all duration-700 delay-600 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               } ${dir === 'rtl' ? 'font-sahel' : ''}`}
             >
               {t('hero.description')}
-            </p>
+            </p></div>
 <br />
             {/* CTA Buttons */}
             <div
