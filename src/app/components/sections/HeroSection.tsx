@@ -7,6 +7,7 @@ import { useLanguage } from '@/app/hooks/useLanguage'
 import { useParallax } from '@/app/hooks/useScrollAnimation'
 import { scrollToElement } from '@/app/lib/utils'
 import { personalInfo } from '@/app/data/portfolio'
+import Image from 'next/image'
 
 export function HeroSection() {
   const { t, dir } = useLanguage()
@@ -57,9 +58,57 @@ export function HeroSection() {
         </div>
       </div>
 
+      {/* Floating Hello World Element - Top Left - Only on large screens */}
+      <div className="hidden lg:block absolute top-16 left-8 xl:left-16 2xl:left-24 z-20 pointer-events-none">
+        <div
+          className={`transition-all duration-1000 ease-out ${
+            isVisible
+              ? 'opacity-70 translate-y-0 scale-100'
+              : 'opacity-0 translate-y-8 scale-90'
+          }`}
+          style={{
+            transform: `translateY(${scrollY * 0.1}px) translateX(${mousePosition.x * -0.3}px)`,
+            animation: 'breathe 4s ease-in-out infinite',
+          }}
+        >
+          <Image
+            src="/photos/hello-world.png"
+            alt="Hello World"
+            width={200}
+            height={200}
+            className="w-32 h-32 xl:w-40 xl:h-40 2xl:w-48 2xl:h-48 object-contain drop-shadow-lg filter brightness-90 dark:brightness-110 transition-all duration-500"
+            priority
+          />
+        </div>
+      </div>
+
+      {/* Floating Purple Horn Element - Bottom Right - Only on large screens */}
+      <div className="hidden lg:block absolute bottom-16 right-8 xl:right-16 2xl:right-24 z-20 pointer-events-none">
+        <div
+          className={`transition-all duration-1000 ease-out ${
+            isVisible
+              ? 'opacity-60 translate-y-0 scale-100'
+              : 'opacity-0 translate-y-8 scale-90'
+          }`}
+          style={{
+            transform: `translateY(${scrollY * -0.15}px) translateX(${mousePosition.x * 0.4}px)`,
+            animation: 'breathe 5s ease-in-out infinite 1.5s',
+          }}
+        >
+          <Image
+            src="/photos/png-purple-horn.svg"
+            alt="Purple Horn Decoration"
+            width={180}
+            height={180}
+            className="w-28 h-28 xl:w-36 xl:h-36 2xl:w-44 2xl:h-44 object-contain drop-shadow-md filter brightness-95 dark:brightness-105 transition-all duration-500"
+            priority
+          />
+        </div>
+      </div>
+
       {/* Main Content */}
       <div
-        className="relative z-10 w-full min-h-screen  flex items-center justify-center sm:px-10 lg:px-20 xl:px-32"
+        className="relative z-10 w-full min-h-screen flex items-center justify-center sm:px-10 lg:px-20 xl:px-32"
         dir={dir}
       >
         <div className="max-w-7xl mx-auto text-center space-y-16 sm:space-y-20">
@@ -82,7 +131,8 @@ export function HeroSection() {
                 {t('hero.greeting')}
               </span>
             </div>
-<br />
+            <br />
+
             {/* Name */}
             <h1
               className={`text-2xl sm:text-4xl lg:text-5xl xl:text-7xl font-black mb-6 tracking-tight transition-all duration-700 delay-300 ${
@@ -93,7 +143,8 @@ export function HeroSection() {
                 {t('hero.name')}
               </span>
             </h1>
-<br />
+            <br />
+
             {/* Title */}
             <h2
               className={`text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-8 transition-all duration-700 delay-400 ${
@@ -104,7 +155,8 @@ export function HeroSection() {
                 {t('hero.title')}
               </span>
             </h2>
-<br />
+            <br />
+
             {/* Subtitle */}
             <h3
               className={`text-lg sm:text-xl lg:text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-10 transition-all duration-700 delay-500 ${
@@ -113,16 +165,19 @@ export function HeroSection() {
             >
               {t('hero.subtitle')}
             </h3>
+
             {/* Description */}
             <div className="max-w-83 sm:max-w-4xl">
-            <p
-              className={`text-sm sm:text-xl max-w-2xl sm:max-w-4xl leading-relaxed text-gray-700 dark:text-gray-300 mb-12 transition-all duration-700 delay-600 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              } ${dir === 'rtl' ? 'font-sahel' : ''}`}
-            >
-              {t('hero.description')}
-            </p></div>
-<br />
+              <p
+                className={`text-sm sm:text-xl max-w-2xl sm:max-w-4xl leading-relaxed text-gray-700 dark:text-gray-300 mb-12 transition-all duration-700 delay-600 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                } ${dir === 'rtl' ? 'font-sahel' : ''}`}
+              >
+                {t('hero.description')}
+              </p>
+            </div>
+            <br />
+
             {/* CTA Buttons */}
             <div
               className={`flex flex-col sm:flex-row gap-6 justify-center mb-14 transition-all duration-700 delay-700 ${
@@ -159,7 +214,8 @@ export function HeroSection() {
                 {t('hero.ctaSecondary')}
               </Button>
             </div>
-<br />
+            <br />
+
             {/* Social Links */}
             <div
               className={`flex justify-center gap-8 ${
@@ -171,7 +227,7 @@ export function HeroSection() {
                 { icon: Github, href: personalInfo.github, label: 'GitHub' },
                 { icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
                 { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
-                { icon:Phone, href:`tel: ${personalInfo.phone}`, label: 'Phone'},
+                { icon: Phone, href: `tel: ${personalInfo.phone}`, label: 'Phone' },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -185,7 +241,8 @@ export function HeroSection() {
                 </a>
               ))}
             </div>
-<br />
+            <br />
+
             {/* Scroll Indicator */}
             <button
               onClick={() => scrollToElement('showcase')}
@@ -199,6 +256,18 @@ export function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* Custom CSS for breathing animation */}
+      <style jsx>{`
+        @keyframes breathe {
+          0%, 100% {
+            transform: scale(1) translateY(0px);
+          }
+          50% {
+            transform: scale(1.05) translateY(-8px);
+          }
+        }
+      `}</style>
     </section>
   )
 }
