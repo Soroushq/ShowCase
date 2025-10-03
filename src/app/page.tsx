@@ -1,31 +1,30 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { Navigation } from './components/sections/Navigation'
 import { HeroSection } from './components/sections/HeroSection'
-import { ShowcaseSection } from './components/sections/ShowcaseSection'
-import { AboutSection } from './components/sections/AboutSection'
-import { ContactSection } from './components/sections/ContactSection'
 import { LanguageProvider } from './components/providers/LanguageProvider'
 
+// Defer non-critical sections for faster initial paint
+const ShowcaseSection = dynamic(
+  () => import('./components/sections/ShowcaseSection').then(m => m.ShowcaseSection),
+  { ssr: true, loading: () => <div className="section-padding container-width">Loading showcase…</div> }
+)
+
+const AboutSection = dynamic(
+  () => import('./components/sections/AboutSection').then(m => m.AboutSection),
+  { ssr: true, loading: () => <div className="section-padding container-width">Loading about…</div> }
+)
+
+const ContactSection = dynamic(
+  () => import('./components/sections/ContactSection').then(m => m.ContactSection),
+  { ssr: true, loading: () => <div className="section-padding container-width">Loading contact…</div> }
+)
+
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
-
-  if (!isLoaded) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-light-primary dark:bg-dark-primary">
-        <div className="loading-spinner"></div>
-      </div>
-    )
-  }
-
   return (
     <LanguageProvider>
-      <main className="min-h-screen bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text overflow-x-hidden">
+      <main id="main" className="min-h-screen bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text overflow-x-hidden">
         <Navigation />
         <HeroSection />
         <ShowcaseSection />
