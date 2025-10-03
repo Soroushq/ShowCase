@@ -9,7 +9,7 @@ import { Sun, Moon } from 'lucide-react'
  * Works with system theme detection + user overrides.
  */
 export default function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme()
+  const { setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   // Fix hydration mismatch by waiting until client mounts

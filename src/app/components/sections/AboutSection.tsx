@@ -16,8 +16,9 @@ export function AboutSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const scrollY = useParallax()
 
-  // Attach pointer tracking to the section only (not window) to reduce work on mobile
-  const sectionRef = useRef<HTMLElement | null>(null)
+  // Properly typed section ref for mouse tracking
+  const sectionRef = useRef<HTMLElement>(null)
+
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
@@ -82,7 +83,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      ref={sectionRef as any}
+      ref={sectionRef}
       className="relative overflow-hidden bg-gray-50 dark:bg-gray-900 transition-colors duration-500"
       dir={dir}
     >
@@ -318,7 +319,6 @@ export function AboutSection() {
                   )
                 })}
               </div>
-
             </div>
           </div>
         </div>

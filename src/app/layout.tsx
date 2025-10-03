@@ -37,16 +37,10 @@ export const metadata: Metadata = {
     'Showcasing previous works, capabilities, and contact info for a full‑stackish front‑end developer specializing in React and Next.js.',
   keywords: ['portfolio', 'web developer', 'react', 'nextjs', 'full-stack'],
   authors: [{ name: 'Soroush Qary Ivary' }],
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
   alternates: {
     canonical: '/',
-    languages: {
-      'en-US': '/',
-      'fa-IR': '/fa',
-    },
+    languages: { 'en-US': '/', 'fa-IR': '/fa' },
   },
   openGraph: {
     type: 'website',
@@ -55,14 +49,7 @@ export const metadata: Metadata = {
     title: 'Soroush Qary Ivary Portfolio',
     description: 'Portfolio showcase for a full‑stackish front‑end developer.',
     siteName: 'Portfolio',
-    images: [
-      {
-        url: '/og/cover.png',
-        width: 1200,
-        height: 630,
-        alt: 'Soroush Portfolio',
-      },
-    ],
+    images: [{ url: '/og/cover.png', width: 1200, height: 630, alt: 'Soroush Portfolio' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -71,33 +58,25 @@ export const metadata: Metadata = {
     images: ['/og/cover.png'],
   },
   icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: [{ url: '/icons/apple-touch-icon.png' }],
+    icon: '/pics/icon.png',
+    shortcut: '/pics/icon.png',
+    apple: '/pics/icon.png',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
     { media: '(prefers-color-scheme: dark)', color: '#111827' },
   ],
 }
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  // Allow zoom for accessibility
-  maximumScale: 5,
-}
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${inter.variable} ${sahel.variable}`}
-    >
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sahel.variable}`}>
       <body className={`${inter.className} antialiased transition-colors duration-300`}>
         <a
           href="#main"
@@ -106,9 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
 
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
 
         {/* JSON-LD structured data */}
         <Script
