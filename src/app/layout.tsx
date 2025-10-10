@@ -35,7 +35,10 @@ export const metadata: Metadata = {
   },
   description:
     'Showcasing previous works, capabilities, and contact info for a full‑stackish front‑end developer specializing in React and Next.js.',
-  keywords: ['portfolio', 'web developer', 'react', 'nextjs', 'full-stack'],
+    keywords: [
+      'portfolio', 'web developer', 'react', 'nextjs', 'full-stack',
+      'Soroush Qary', 'Soroush Qary Ivary', 'سروش قاری', 'سروش قاری ایوری'
+    ],
   authors: [{ name: 'Soroush Qary Ivary' }],
   robots: { index: true, follow: true },
   alternates: {
@@ -47,7 +50,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     title: 'Soroush Qary Ivary Portfolio',
-    description: 'Portfolio showcase for a full‑stackish front‑end developer.',
+    description:
+      'Portfolio of Soroush Qary Ivary (سروش قاری ایوری) — showcasing front-end and full-stack development work, capabilities, and contact info.',
     siteName: 'Portfolio',
     images: [{ url: '/og/cover.png', width: 1200, height: 630, alt: 'Soroush Portfolio' }],
   },
@@ -115,7 +119,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Soroush Qary Ivary',
-              alternateName: 'Soroush Qary',
+              alternateName: [
+                'Soroush Qary',
+                'سروش قاری ایوری',
+                'سروش قاری'
+              ],
               url: siteUrl,
               jobTitle: 'Front-end / Full-stack Developer',
               sameAs: [
