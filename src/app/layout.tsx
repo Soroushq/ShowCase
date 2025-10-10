@@ -115,9 +115,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Soroush Qary Ivary',
+              alternateName: 'Soroush Qary',
               url: siteUrl,
               jobTitle: 'Front-end / Full-stack Developer',
-            }),
+              sameAs: [
+                'https://github.com/Soroushq',
+                'https://www.linkedin.com/in/soroush-qary-08392334b',
+                'https://www.instagram.com/soroushqi',
+              ]
+            }
+            ),
           }}
         />
       </body>
