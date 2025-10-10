@@ -15,7 +15,13 @@ export const translations = {
   name: "Soroush Qary Ivary",
   title: "Frontend Developer",
   subtitle: "Crafting meaningful digital experiences",
-  description: "Frontend Developer with 3+ years of hands-on experience building dynamic web applications. I specialize in Angular, TypeScript, and modern CSS frameworks, turning complex ideas into intuitive user interfaces. Currently leading frontend development at the Department of Education while pursuing my Master's in IT Management. I'm passionate about integrating AI-driven solutions and believe great code should be both powerful and maintainable.",
+  description: `
+Creative frontend developer passionate about clean, modern interfaces.  
+• Skilled in React, Next.js, Angular, and TypeScript  
+• Focused on UX, speed, and maintainable architecture  
+• Experienced with TailwindCSS and responsive design  
+• Exploring AI tools for smarter, scalable web solutions
+`,
   cta: "Explore My Work",
   ctaSecondary: "Let's Connect",
 },
@@ -57,14 +63,21 @@ hero: {
   name: "سروش قاری ایوری",
   title: "توسعه‌دهنده فرانت‌اند هستم",
   subtitle: "خالق تجربیات کاربری بهتر",
-  description: "توسعه‌دهنده فرانت‌اند با بیش از ۳ سال تجربه عملی در طراحی و ساخت وب‌اپلیکیشن‌های پویا. از Angular و TypeScript تا HTML5 و Tailwind CSS، ابزارهای مدرن را به کار می‌گیرم تا رابط‌های کاربری روان و زیبا بسازم. تجربه رهبری تیم فرانت‌اند در بازطراحی سایت آموزش و پرورش و علاقه‌ای ویژه به یکپارچه‌سازی راه‌حل‌های هوشمند در پروژه‌هایم دارم.",
+  description: `
+توسعه‌دهنده خلاق فرانت‌اند با تمرکز بر طراحی مدرن و کدنویسی تمیز.  
+• مسلط به React، Next.js، Angular و TypeScript  
+• تمرکز بر تجربه کاربری، سرعت و معماری مقیاس‌پذیر  
+• متخصص در TailwindCSS و طراحی واکنش‌گرا  
+• علاقه‌مند به استفاده از ابزارهای هوش مصنوعی در توسعه وب
+`,
+
   cta: "مشاهده نمونه کارها",
-  ctaSecondary: "بیایید صحبت کنیم",
+  ctaSecondary: "ارتباط با من",
 },
 about: {
   title: "درباره من",
   subtitle: "چرا من؟",
-  description: "من کسی هستم که از حل مسائل پیچیده با کد لذت می‌برم و همیشه به دنبال یادگیری تکنولوژی‌های جدید هستم.",
+  description: "من وب‌سایت‌هایی می‌سازم که هم زیبا هستند و هم سریع. هدفم ایجاد تجربه‌ای روان و جذاب برای کاربر با طراحی مینیمال و عملکرد بالا است.",
   background: "مسیرم از مهندسی برق شروع شد و به مدیریت IT ادامه یافت، اما عشق واقعی‌ام توسعه فرانت‌اند است. در کنار کار روزانه‌ام به عنوان کارشناس منابع انسانی، تیم‌های توسعه را رهبری می‌کنم و پروژه‌های وب را از صفر تا صد پیاده‌سازی می‌کنم. این ترکیب منحصر به فرد باعث شده درک عمیق‌تری از نیازهای کاربران و سازمان‌ها داشته باشم.",
   skills: "مهارت‌ها و ابزارها",
   experience: "سال تجربه کاری",

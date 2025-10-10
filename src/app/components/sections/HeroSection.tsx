@@ -167,15 +167,16 @@ export function HeroSection() {
             </h3>
 
             {/* Description */}
-            <div className="max-w-83 sm:max-w-4xl">
+          <div className="mx-auto w-full flex justify-center">
               <p
-                className={`text-sm sm:text-xl max-w-2xl sm:max-w-4xl text-justify tracking-normal leading-relaxed text-gray-700 dark:text-gray-300 mb-12 transition-all duration-700 delay-600 ${
+                className={`text-sm sm:text-xl max-w-2xl sm:max-w-4xl leading-relaxed text-gray-700 dark:text-gray-300 mb-12 transition-all duration-700 delay-600 whitespace-pre-line ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                } ${dir === 'rtl' ? 'font-sahel' : ''}`}
+                } ${dir === 'rtl' ? 'font-sahel text-justify' : 'text-justify'}`}
               >
                 {t('hero.description')}
               </p>
-            </div>
+
+          </div>
             <br />
 
             {/* CTA Buttons */}
