@@ -121,8 +121,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: 'Soroush Qary Ivary',
               alternateName: [
                 'Soroush Qary',
+                'soroosh qary',
+                'soroosh ghari',
+                'soroush ghary',
+                'soroush ghari ivari',
+                'soroosh ghari ivary',
+                'soroush Qari evary',
+                'soroush ghari evari',
+                'soroosh ghari evari',
                 'سروش قاری ایوری',
-                'سروش قاری'
+                'سروش قاری',
               ],
               url: siteUrl,
               jobTitle: 'Front-end / Full-stack Developer',
