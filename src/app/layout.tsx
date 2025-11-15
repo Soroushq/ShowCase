@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { ThemeProvider } from './components/providers/ThemeProvider'
+import { LanguageProvider } from './components/providers/LanguageProvider'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -89,7 +90,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
 
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </ThemeProvider>
 
         {/* JSON-LD structured data */}
         <Script

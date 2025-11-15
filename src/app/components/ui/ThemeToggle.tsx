@@ -2,50 +2,70 @@
 
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, Monitor } from 'lucide-react'
 
-/**
- * ThemeToggle button to manually switch between light and dark themes.
- * Works with system theme detection + user overrides.
- */
 export default function ThemeToggle() {
-  const { setTheme, resolvedTheme } = useTheme()
+  const { setTheme, resolvedTheme, theme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  // Fix hydration mismatch by waiting until client mounts
   useEffect(() => {
     setMounted(true)
-  }, [])
+    console.log('Theme Debug - Current theme:', theme, 'Resolved theme:', resolvedTheme)
+  }, [theme, resolvedTheme])
 
   if (!mounted) {
     return (
       <button
-        className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 animate-pulse"
+        className="w-12 h-12 rounded-xl bg-gray-200 dark:bg-gray-800 animate-pulse"
         aria-label="Loading theme toggle"
         disabled
       />
     )
   }
 
-  const isDark = resolvedTheme === 'dark'
+  const cycleTheme = () => {
+    console.log('Before cycle - Theme:', theme, 'Resolved:', resolvedTheme)
+    if (theme === 'system') {
+      setTheme('light')
+    } else if (theme === 'light') {
+      setTheme('dark')
+    } else {
+      setTheme('system')
+    }
+    console.log('After cycle - New theme should be:', theme === 'system' ? 'light' : theme === 'light' ? 'dark' : 'system')
+  }
+
+  const getCurrentThemeIcon = () => {
+    if (theme === 'system') {
+      return <Monitor className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+    } else if (theme === 'light') {
+      return <Sun className="w-5 h-5 text-yellow-500" />
+    } else {
+      return <Moon className="w-5 h-5 text-blue-400" />
+    }
+  }
+
+  const getNextTheme = () => {
+    if (theme === 'system') return 'light'
+    if (theme === 'light') return 'dark'
+    return 'system'
+  }
 
   return (
     <button
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      aria-label="Toggle theme"
+      onClick={cycleTheme}
+      aria-label={`Switch to ${getNextTheme()} theme`}
+      title={`Current: ${theme} - Click for ${getNextTheme()}`}
       className="
-        p-2 rounded-full transition-all duration-300
-        bg-gray-200 dark:bg-gray-800
-        hover:bg-gray-300 dark:hover:bg-gray-700
+        p-3 rounded-xl transition-all duration-300
+        bg-gray-100 dark:bg-gray-800
+        hover:bg-gray-200 dark:hover:bg-gray-700
         border border-gray-300 dark:border-gray-600
         shadow-md hover:shadow-lg
+        flex items-center justify-center
       "
     >
-      {isDark ? (
-        <Sun className="w-6 h-6 text-yellow-500 transition-transform duration-300" />
-      ) : (
-        <Moon className="w-6 h-6 text-blue-600 transition-transform duration-300" />
-      )}
+      {getCurrentThemeIcon()}
     </button>
   )
 }

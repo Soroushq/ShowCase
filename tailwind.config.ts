@@ -28,8 +28,6 @@ const config: Config = {
         sahel: ['var(--font-sahel)', 'var(--font-inter)', 'system-ui', 'sans-serif'],
         rtl: ['var(--font-sahel)', 'system-ui', 'sans-serif'],
       },
-      // Fluid font sizes using clamp() with handset-first minimums
-      // Use these directly (e.g., text-fluid-base) or rely on the base h1–h6 styles in globals.css.
       fontSize: {
         'fluid-xs': ['clamp(0.75rem, 0.68rem + 0.5vw, 0.875rem)', { lineHeight: '1.4' }],
         'fluid-sm': ['clamp(0.8125rem, 0.72rem + 0.6vw, 0.9375rem)', { lineHeight: '1.5' }],
@@ -41,7 +39,6 @@ const config: Config = {
         'fluid-4xl': ['clamp(1.75rem, 1.3rem + 3.4vw, 2.75rem)', { lineHeight: '1.1' }],
       },
       spacing: {
-        // Fluid section vertical rhythm
         'fluid-pt': 'clamp(2.5rem, 2rem + 2vw, 4rem)',
         'fluid-pb': 'clamp(2.5rem, 2rem + 2vw, 4rem)',
       },
@@ -84,9 +81,6 @@ const config: Config = {
           '0%': { width: '0%' },
           '100%': { width: 'var(--skill-width)' },
         },
-      },
-      screens: {
-        // Keep defaults; handset-first sizing is handled with clamp() utilities
       },
     },
   },
