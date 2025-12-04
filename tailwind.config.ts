@@ -1,3 +1,4 @@
+// File: tailwind.config.ts
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -11,13 +12,13 @@ const config: Config = {
     extend: {
       colors: {
         light: {
-          primary: '#ffffff',
+          primary: '#fafafa',
           secondary: '#f9fafb',
           accent: '#9333ea',
           text: '#111827',
         },
         dark: {
-          primary: '#111827',
+          primary: '#000000',      // used for body & navbar bg in dark mode
           secondary: '#1f2937',
           accent: '#22c55e',
           text: '#f3f4f6',

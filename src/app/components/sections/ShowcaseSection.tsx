@@ -1,288 +1,240 @@
 // File: src/app/components/sections/ShowcaseSection.tsx
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app/components/ui/Card'
-import { buttonVariants } from '@/app/components/ui/Button'
-import { ExternalLink, Code, Eye, Sparkles, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { ExternalLink, Eye, X } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
-import { useScrollAnimation, useParallax } from '@/app/hooks/useScrollAnimation'
 import { portfolioData, portfolioDataFa } from '@/app/data/portfolio'
 import { cn } from '@/app/lib/utils'
-import Image from "next/image"
+import Image from 'next/image'
 
 export function ShowcaseSection() {
-  const { t, dir, language } = useLanguage()
-  const { ref, isVisible } = useScrollAnimation()
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null)
+  const { language, dir } = useLanguage()
+  const [hoveredId, setHoveredId] = useState<number | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const scrollY = useParallax()
+  const [isVisible, setIsVisible] = useState(false)
 
   const projects = language === 'fa' ? portfolioDataFa : portfolioData
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = ref.current?.getBoundingClientRect()
-      if (rect) {
-        setMousePosition({
-          x: (e.clientX - rect.left - rect.width / 2) / 40,
-          y: (e.clientY - rect.top - rect.height / 2) / 40
-        })
-      }
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [ref])
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 }
+    )
+    const section = document.getElementById('showcase')
+    if (section) observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    if (!previewUrl) return
+    const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setPreviewUrl(null)
     }
-    window.addEventListener('keydown', handleEscape)
-    return () => window.removeEventListener('keydown', handleEscape)
-  }, [])
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [previewUrl])
 
   return (
     <>
-      <section id="showcase" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-        
-        {/* Light Mode Background */}
-        <div className="absolute inset-0 dark:opacity-0 opacity-100 transition-opacity duration-500">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: 'url(/photos/w-abstract.jpg)',
-              transform: `translateY(${scrollY * 0.08}px) translateX(${mousePosition.x * 0.3}px)`,
-            }}
-          />
-          <div className="absolute inset-0 bg-white/65">
-            <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 800">
-              <defs>
-                <mask id="wave-mask-showcase">
-                  <rect width="100%" height="100%" fill="white"/>
-                  <path d="M0,150 Q300,50 600,150 T1200,150 L1200,0 L0,0 Z" fill="black" />
-                  <path d="M0,650 Q300,550 600,650 T1200,650 L1200,800 L0,800 Z" fill="black" />
-                  <ellipse cx="200" cy="300" rx="180" ry="120" fill="black" opacity="0.4"/>
-                  <ellipse cx="800" cy="500" rx="200" ry="150" fill="black" opacity="0.3"/>
-                  <ellipse cx="1000" cy="200" rx="150" ry="100" fill="black" opacity="0.35"/>
-                </mask>
-              </defs>
-              <rect width="100%" height="100%" fill="white" mask="url(#wave-mask-showcase)" opacity="0.85"/>
-            </svg>
-          </div>
-        </div>
+      <section
+        id="showcase"
+        className="relative bg-[#f8f9fa] dark:bg-[#050608] border-t border-neutral-200/60 dark:border-neutral-800/60"
+      >
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb40_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f293740_1px,transparent_1px)] bg-[size:32px_100%]" />
 
-        {/* Dark Mode Background */}
-        <div className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-500">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-            <div className="absolute inset-0">
-              <div 
-                className="absolute top-1/5 left-1/5 w-72 lg:w-96 h-72 lg:h-96 bg-gradient-to-r from-teal-400/15 to-teal-600/8 rounded-full blur-3xl"
-                style={{ 
-                  transform: `translateY(${scrollY * 0.25}px) translateX(${mousePosition.x}px)`,
-                  filter: 'blur(100px)'
-                }}
-              />
-              <div 
-                className="absolute bottom-1/4 right-1/5 w-64 lg:w-80 h-64 lg:h-80 bg-gradient-to-l from-green-500/12 to-green-300/6 rounded-full blur-2xl"
-                style={{ 
-                  transform: `translateY(${scrollY * -0.18}px) translateX(${mousePosition.x * -0.6}px)`,
-                  filter: 'blur(90px)'
-                }}
-              />
-            </div>
-          </div>
-        </div>
+        <div
+          dir={dir}
+          className={cn(
+            'relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-24',
+            isVisible ? 'opacity-100' : 'opacity-0',
+            'transition-opacity duration-700'
+          )}
+        >
+          {/* Top title */}
+          <header className="mb-12 sm:mb-16 text-center">
+            <p className={cn(
+              'text-sm sm:text-base font-bold tracking-wider uppercase text-neutral-500 dark:text-neutral-400 mb-4',
+              dir === 'rtl' && 'font-sahel'
+            )}>
+              {language === 'fa' ? 'نمونه‌کار هام' : 'My projects'}
+            </p>
+            <h2 className={cn(
+              'text-4xl sm:text-5xl lg:text-6xl font-black text-neutral-900 dark:text-neutral-50 leading-tight',
+              dir === 'rtl' && 'font-sahel'
+            )}>
+              {language === 'fa' ? 'پروژه‌های منتخب' : 'Featured work'}
+            </h2>
+          </header>
 
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none">
-          <div className="w-full h-full grid-pattern" />
-        </div>
+          {/* Projects stack */}
+          <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+            {projects.map((project) => {
+              const isHovered = hoveredId === project.id
 
-        {/* Main Content */}
-        <div className="relative z-10 w-full min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 py-12 sm:py-16" dir={dir}>
-          <div className="max-w-7xl mx-auto space-y-10 sm:space-y-14">
-            
-            {/* Section Header */}
-            <div
-              ref={ref}
-              className={`text-center space-y-4 sm:space-y-5 transition-all duration-1000 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-              }`}
-            >
-              <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 sm:py-2.5 bg-blue-50/90 dark:bg-teal-900/40 backdrop-blur-sm rounded-full border border-blue-200/60 dark:border-teal-700/40 shadow-lg">
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-teal-400" />
-                <span className={`text-xs sm:text-sm font-semibold text-blue-700 dark:text-teal-300 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
-                  {t('projects')}
-                </span>
-              </div>
-              
-              <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight ${dir === 'rtl' ? 'font-sahel' : ''}`}>
-                <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
-                  {language === 'fa' ? 'نمونه‌کارهای برجسته' : 'Featured Work'}
-                </span>
-              </h2>
-            </div>
-
-            {/* Projects Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
-              {projects.map((project, index) => (
+              return (
                 <div
                   key={project.id}
-                  className={`group transition-all duration-700 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                  }`}
-                  style={{ 
-                    transitionDelay: `${200 + index * 120}ms`,
-                    transform: `translateY(${scrollY * 0.05}px)`
-                  }}
-                  onMouseEnter={() => setHoveredProject(project.id)}
-                  onMouseLeave={() => setHoveredProject(null)}
+                  className={cn(
+                    'group relative overflow-hidden rounded-xl border border-neutral-200/30 dark:border-neutral-800/30',
+                    'hover:border-neutral-300 dark:hover:border-neutral-700/60',
+                    'hover:bg-white/40 dark:hover:bg-neutral-950/40',
+                    'transition-all duration-500 ease-out shadow-sm hover:shadow-lg',
+                    isHovered ? 'py-8 sm:py-10 lg:py-12 min-h-[320px]' : 'py-4 sm:py-6 min-h-[88px]'
+                  )}
                 >
-                  <Card className="h-full overflow-hidden backdrop-blur-md bg-white/40 dark:bg-black/30 border border-white/50 dark:border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] group-hover:-translate-y-1">
-                    
-                    {/* Project Image */}
-                    <div className="relative overflow-hidden h-44 sm:h-52 lg:h-56">
-                      <Image 
-                        src={project.image} 
-                        alt={`${project.title} screenshot`} 
-                        width={500} 
-                        height={300} 
-                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" 
-                        unoptimized={project.image.startsWith('http')}
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(project.title)}&size=500&background=6366f1&color=fff&bold=true&font-size=0.33`;
-                        }}
-                      />
-                      
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-                      
-                      {/* Action Overlay */}
-                      <div className={`absolute inset-0 bg-gradient-to-br from-purple-800/90 to-cyan-700/90 dark:from-cyan-900/90 dark:to-teal-500/90 flex items-center justify-center gap-2 sm:gap-3 transition-all duration-500 ${
-                        hoveredProject === project.id ? 'opacity-100 backdrop-blur-sm' : 'opacity-0 translate-y-4'
-                      }`}>
-                        <button
-                          onClick={() => setPreviewUrl(project.url)}
-                          className={cn(
-                            buttonVariants({ variant: 'secondary', size: 'sm' }), 
-                            `flex items-center gap-1.5 bg-white/30 border-white/40 text-white hover:bg-white/40 backdrop-blur-sm shadow-lg transform hover:scale-105 transition-all duration-300 text-xs px-3 py-2 ${dir === 'rtl' ? 'font-sahel' : ''}`
+                  {/* Hover trigger - ONLY on main content, not borders */}
+                  <div
+                    className="px-6 sm:px-8 lg:px-12 h-full cursor-pointer relative z-10"
+                    onMouseEnter={() => setHoveredId(project.id)}
+                    onMouseLeave={() => setHoveredId(null)}
+                  >
+                    <div className="flex flex-col lg:flex-row lg:items-end lg:gap-8 h-full">
+                      {/* LEFT: Title + expandable content */}
+                      <div className="lg:w-2/3 flex-1">
+                        {/* Title - ALWAYS VISIBLE & BIG */}
+                        <h3 className={cn(
+                          'text-2xl sm:text-3xl lg:text-4xl font-black text-neutral-900 dark:text-neutral-50 mb-3 lg:mb-6 leading-tight',
+                          dir === 'rtl' && 'font-sahel',
+                          isHovered && 'dark:text-cyan-400'
+                        )}>
+                          {project.title}
+                        </h3>
+
+                        {/* Description - HIDDEN until hover - ALL DEVICES */}
+                        <div className={cn(
+                          'max-h-0 overflow-hidden opacity-0 -translate-y-2 transition-all duration-500 ease-out lg:max-h-20 lg:opacity-50 lg:translate-y-0 lg:mb-6',
+                          isHovered && '!max-h-32 !opacity-100 !translate-y-0'
+                        )}>
+                          <p className={cn(
+                            'text-base lg:text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed',
+                            dir === 'rtl' && 'font-sahel text-right'
+                          )}>
+                            {project.description}
+                          </p>
+                        </div>
+
+                        {/* Tech stack - HIDDEN until hover - ALL DEVICES */}
+                        <div className={cn(
+                          'max-h-0 opacity-0 -translate-y-2 transition-all duration-500 ease-out lg:max-h-16 lg:opacity-50 lg:translate-y-0 lg:flex lg:flex-wrap lg:gap-2 lg:mb-6',
+                          isHovered && '!max-h-20 !opacity-100 !translate-y-0 flex flex-wrap gap-2'
+                        )}>
+                          {project.technologies.slice(0, 4).map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-3 py-1.5 text-sm font-medium rounded-full border border-neutral-200/60 dark:border-neutral-700/70 bg-white/70 dark:bg-neutral-950/70 text-neutral-600 dark:text-neutral-200"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                          {project.technologies.length > 4 && (
+                            <span className="px-3 py-1.5 text-sm font-medium text-neutral-400 dark:text-neutral-500">
+                              +{project.technologies.length - 4}
+                            </span>
                           )}
-                        >
-                          <Eye className="w-3.5 h-3.5" />
-                          {language === 'fa' ? 'پیش‌نمایش' : 'Preview'}
-                        </button>
-                        
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={cn(
-                            buttonVariants({ variant: 'outline', size: 'sm' }), 
-                            `flex items-center gap-1.5 border-white/40 text-white hover:bg-white/30 backdrop-blur-sm shadow-lg transform hover:scale-105 transition-all duration-300 text-xs px-3 py-2 ${dir === 'rtl' ? 'font-sahel' : ''}`
-                          )}
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                          {language === 'fa' ? 'باز کردن' : 'Open'}
-                        </a>
+                        </div>
+
+                        {/* Buttons - HIDDEN until hover - ALL DEVICES */}
+                        <div className={cn(
+                          'max-h-0 opacity-0 -translate-y-2 transition-all duration-500 ease-out lg:max-h-14 lg:opacity-50 lg:translate-y-0 lg:flex lg:items-center lg:gap-4',
+                          isHovered && '!max-h-16 !opacity-100 !translate-y-0 flex items-center gap-4'
+                        )}>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setPreviewUrl(project.url)
+                            }}
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-200 hover:border-neutral-900 dark:hover:border-cyan-400 hover:text-neutral-900 dark:hover:text-cyan-300 text-sm font-bold transition-all shadow-sm hover:shadow-md"
+                          >
+                            <Eye className="w-4 h-4" />
+                            <span>{language === 'fa' ? 'پیش‌نمایش' : 'Preview'}</span>
+                          </button>
+
+                          <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-neutral-900 dark:border-cyan-400 bg-neutral-900 hover:bg-black dark:bg-cyan-400 dark:hover:bg-cyan-300 text-white dark:text-black text-sm font-bold transition-all shadow-sm hover:shadow-md"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                            <span>{language === 'fa' ? 'مشاهده لایو' : 'Live'}</span>
+                          </a>
+                        </div>
                       </div>
 
-                      {/* Category Badge */}
-                      <div className={`absolute top-2 sm:top-3 ${dir === 'rtl' ? 'right-2 sm:right-3' : 'left-2 sm:left-3'}`}>
-                        <span className={`px-2 py-1 text-[0.65rem] sm:text-xs font-semibold bg-white/30 dark:bg-black/30 backdrop-blur-sm text-white rounded-full border border-white/40 dark:border-white/20 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
-                          {project.category.toUpperCase()}
-                        </span>
+                      {/* RIGHT: Image - HIDDEN until hover - ALL DEVICES */}
+                      <div className="lg:w-1/3 mt-6 lg:mt-0 lg:ml-auto">
+                        <div className={cn(
+                          'relative w-full aspect-[16/9] rounded-2xl border-2 border-transparent bg-neutral-100 dark:bg-neutral-900 overflow-hidden transition-all duration-500 ease-out opacity-0 scale-95 -translate-y-4 lg:opacity-30 lg:scale-100 lg:translate-y-0',
+                          isHovered && 'opacity-100 !scale-100 !translate-y-0 !border-neutral-200/60 dark:!border-cyan-500/60 shadow-2xl'
+                        )}>
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover transition-transform duration-500 hover:scale-[1.02]"
+                            sizes="400px"
+                            unoptimized={project.image.startsWith('http')}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent pointer-events-none" />
+                        </div>
                       </div>
                     </div>
+                  </div>
 
-                    {/* Card Content */}
-                    <CardHeader className="p-4 sm:p-5">
-                      <CardTitle className={`text-sm sm:text-base lg:text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-teal-400 transition-colors duration-300 line-clamp-2 ${dir === 'rtl' ? 'font-sahel text-right' : ''}`}>
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className={`text-xs sm:text-sm leading-relaxed text-gray-600 dark:text-gray-300 line-clamp-3 ${dir === 'rtl' ? 'font-sahel text-right' : ''}`}>
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-
-                    <CardContent className="px-4 sm:px-5 pb-4 sm:pb-5">
-                      {/* Technology Tags */}
-                      <div className={`flex flex-wrap gap-1.5 sm:gap-2 mb-3 ${dir === 'rtl' ? 'justify-end' : ''}`}>
-                        {project.technologies.slice(0, 3).map((tech) => (
-                          <span
-                            key={tech}
-                            className={`px-2 sm:px-2.5 py-1 text-[0.65rem] sm:text-xs font-medium bg-purple-100/90 dark:bg-teal-900/40 text-purple-700 dark:text-teal-300 rounded-lg border border-purple-200/60 dark:border-teal-700/40 transition-all duration-300 hover:scale-105 backdrop-blur-sm ${dir === 'rtl' ? 'font-sahel' : ''}`}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                        {project.technologies.length > 3 && (
-                          <span className="px-2 sm:px-2.5 py-1 text-[0.65rem] sm:text-xs font-medium bg-gray-100/90 dark:bg-gray-700/40 text-gray-600 dark:text-gray-400 rounded-lg border border-gray-200/60 dark:border-gray-600/40 backdrop-blur-sm">
-                            +{project.technologies.length - 3}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Project Stats */}
-                      <div className={`pt-3 border-t border-gray-200/60 dark:border-gray-700/40 flex items-center ${dir === 'rtl' ? 'justify-end space-x-reverse' : 'justify-start'} space-x-3 text-[0.65rem] sm:text-xs text-gray-500 dark:text-gray-400`}>
-                        <div className="flex items-center gap-1">
-                          <Code className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                          <span className={`${dir === 'rtl' ? 'font-sahel' : ''}`}>
-                            {project.technologies.length} Tech
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                          <span className={`${dir === 'rtl' ? 'font-sahel' : ''}`}>
-                            Live
-                          </span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  {/* Bottom accent line - FIXED position */}
+                  <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-neutral-200/40 dark:bg-neutral-800/40 mx-6 sm:mx-8 lg:mx-12 overflow-hidden rounded-full">
+                    <div className={cn(
+                      'h-full bg-gradient-to-r from-neutral-900 via-cyan-500 dark:from-cyan-400 w-0 transition-all duration-700 ease-out origin-left',
+                      isHovered && 'w-full',
+                      dir === 'rtl' && 'origin-right'
+                    )} />
+                  </div>
                 </div>
-              ))}
-            </div>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* Live Preview Modal */}
+      {/* Preview modal */}
       {previewUrl && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fade-in"
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4"
           onClick={() => setPreviewUrl(null)}
         >
-          <div 
-            className="relative w-full max-w-7xl h-[85vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
+          <div
+            className="relative w-full max-w-6xl h-[85vh] bg-neutral-950 border-2 border-neutral-800/80 rounded-2xl overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
             <button
               onClick={() => setPreviewUrl(null)}
-              className="absolute top-4 right-4 z-10 p-2 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-              aria-label="Close preview"
+              className="absolute top-6 right-6 z-10 flex items-center justify-center w-12 h-12 rounded-2xl border-2 border-neutral-700 bg-neutral-900/95 backdrop-blur-sm text-neutral-200 hover:bg-neutral-800 transition-all shadow-lg"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" />
             </button>
 
-            {/* External Link Button */}
             <a
               href={previewUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute top-4 left-4 z-10 flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-105 text-sm font-semibold"
+              className="absolute top-6 left-6 z-10 inline-flex items-center gap-2 px-6 py-3 rounded-2xl border border-neutral-700 bg-neutral-100/95 dark:bg-neutral-900/95 text-neutral-900 dark:text-neutral-100 hover:bg-white dark:hover:bg-neutral-800 backdrop-blur-sm text-sm font-bold transition-all shadow-lg"
             >
               <ExternalLink className="w-4 h-4" />
-              {language === 'fa' ? 'باز کردن در تب جدید' : 'Open in New Tab'}
+              {language === 'fa' ? 'باز کردن در تب جدید' : 'Open in new tab'}
             </a>
 
-            {/* Iframe */}
             <iframe
               src={previewUrl}
               className="w-full h-full border-0"
-              title="Live Preview"
+              title="Project preview"
               sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
             />
           </div>

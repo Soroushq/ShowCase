@@ -3,247 +3,204 @@
 
 import { useEffect, useState } from 'react'
 import { Button } from '@/app/components/ui/Button'
-import { ChevronDown, Github, Linkedin, Phone, Mail, ArrowRight } from 'lucide-react'
+import { Github, Linkedin, Mail, ArrowRight, Terminal } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
-import { useParallax } from '@/app/hooks/useScrollAnimation'
 import { scrollToElement } from '@/app/lib/utils'
 import { personalInfo } from '@/app/data/portfolio'
-import Image from 'next/image'
 
 export function HeroSection() {
-  const { t, dir } = useLanguage()
+  const { t, dir, language } = useLanguage()
   const [isVisible, setIsVisible] = useState(false)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const scrollY = useParallax()
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 200)
+    const timer = setTimeout(() => setIsVisible(true), 100)
     return () => clearTimeout(timer)
   }, [])
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX - window.innerWidth / 2) / 50,
-        y: (e.clientY - window.innerHeight / 2) / 50,
-      })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
+  const nameDisplay = language === 'fa' ? 'سروش' : 'SOROUSH'
+  const surnameDisplay = language === 'fa' ? 'قاری' : 'Qary'
+  
+  const shortDescription = language === 'fa' 
+    ? 'توسعه‌دهنده خلاق وب. برای جزئیات نگه دارید.'
+    : 'Creative Web Developer. Hover for specs.'
+
+  // Structured data for the description to allow specific highlighting
+  const descriptionContent = [
+    { text: "I craft modern web apps that are ", highlight: false },
+    { text: "blazing fast", highlight: true },
+    { text: ", accessible, and a joy to use.", highlight: false },
+    { break: true },
+    { text: "• Front-end: ", highlight: false },
+    { text: "React, Next.js, Angular & TypeScript", highlight: true },
+    { break: true },
+    { text: "• Back-end: ", highlight: false },
+    { text: "Node.js, API design, Docker & VPS", highlight: true },
+    { break: true },
+    { text: "• Design: ", highlight: false },
+    { text: "TailwindCSS, SEO & Admin Dashboards", highlight: true }
+  ]
+  
+  // Farsi version
+  const descriptionContentFa = [
+    { text: "طراحی و ساخت وب‌اپلیکیشن‌های مدرن، ", highlight: false },
+    { text: "فوق‌سریع", highlight: true },
+    { text: " و دسترس‌پذیر.", highlight: false },
+    { break: true },
+    { text: "• فرانت‌اند: ", highlight: false },
+    { text: "React, Next.js, Angular & TypeScript", highlight: true },
+    { break: true },
+    { text: "• بک‌اند: ", highlight: false },
+    { text: "Node.js, API design, Docker & VPS", highlight: true },
+    { break: true },
+    { text: "• طراحی: ", highlight: false },
+    { text: "TailwindCSS, SEO & Admin Dashboards", highlight: true }
+  ]
+
+  const activeContent = language === 'fa' ? descriptionContentFa : descriptionContent
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-500"
+      dir={dir}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f8f9fa] dark:bg-[#050608] transition-colors duration-500 px-6"
     >
-      {/* Dynamic Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-100 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-black transition-colors duration-500">
-        {/* Floating Blobs */}
-        <div className="absolute inset-0">
-          <div
-            className="absolute top-1/4 left-1/4 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-gradient-to-r from-purple-200/30 to-purple-300/20 dark:from-green-400/20 dark:to-green-600/10 rounded-full blur-3xl animate-pulse-slow transition-colors duration-500"
-            style={{
-              transform: `translateY(${scrollY * 0.3}px) translateX(${mousePosition.x}px)`,
-              filter: 'blur(80px)',
-            }}
-          />
-          <div
-            className="absolute top-1/3 right-1/4 w-56 sm:w-64 lg:w-72 h-56 sm:h-64 lg:h-72 bg-gradient-to-l from-purple-100/25 to-purple-200/15 dark:from-green-500/15 dark:to-green-300/8 rounded-full blur-2xl animate-float-slow transition-colors duration-500"
-            style={{
-              transform: `translateY(${scrollY * -0.2}px) translateX(${mousePosition.x * -0.8}px)`,
-              animationDelay: '1s',
-              filter: 'blur(60px)',
-            }}
-          />
-        </div>
-      </div>
+      {/* Grid Background (Gaming/Tech Vibe) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      {/* Floating Hello World - Desktop Only */}
-      <div className="hidden xl:block absolute top-12 2xl:top-16 left-12 2xl:left-20 z-20 pointer-events-none">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col items-center text-center">
+        
+        {/* Status Pill */}
         <div
-          className={`transition-all duration-1000 ease-out ${
-            isVisible ? 'opacity-60 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'
+          className={`mb-10 transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
-          style={{
-            transform: `translateY(${scrollY * 0.1}px) translateX(${mousePosition.x * -0.3}px)`,
-            animation: 'breathe 4s ease-in-out infinite',
-          }}
         >
-          <Image
-            src="/photos/hello-world.png"
-            alt="Hello World"
-            width={160}
-            height={160}
-            className="w-32 2xl:w-40 h-32 2xl:h-40 object-contain drop-shadow-lg filter brightness-90 dark:brightness-110 transition-all duration-500"
-            priority
-          />
-        </div>
-      </div>
-
-      {/* Floating Purple Horn - Desktop Only */}
-      <div className="hidden xl:block absolute bottom-12 2xl:bottom-16 right-12 2xl:right-20 z-20 pointer-events-none">
-        <div
-          className={`transition-all duration-1000 ease-out ${
-            isVisible ? 'opacity-50 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'
-          }`}
-          style={{
-            transform: `translateY(${scrollY * -0.15}px) translateX(${mousePosition.x * 0.4}px)`,
-            animation: 'breathe 5s ease-in-out infinite 1.5s',
-          }}
-        >
-          <Image
-            src="/photos/png-purple-horn.svg"
-            alt="Purple Horn Decoration"
-            width={150}
-            height={150}
-            className="w-28 2xl:w-36 h-28 2xl:h-36 object-contain drop-shadow-md filter brightness-95 dark:brightness-105 transition-all duration-500"
-            priority
-          />
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 w-full min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12" dir={dir}>
-        <div className="max-w-5xl mx-auto text-center space-y-8 sm:space-y-10 lg:space-y-12">
-          
-          {/* Glass Card */}
-          <div
-            className={`backdrop-blur-sm bg-white/10 dark:bg-black/10 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-16 border border-white/20 dark:border-white/5 shadow-2xl transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'
-            }`}
-          >
-            {/* Greeting Badge */}
-            <div
-              className={`inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 sm:py-2.5 mb-6 sm:mb-8 bg-purple-50/80 dark:bg-green-900/30 backdrop-blur-sm rounded-full border border-purple-200/50 dark:border-green-700/30 transition-all duration-700 delay-100 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              } ${dir === 'rtl' ? 'font-sahel' : ''}`}
-            >
-              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-purple-500 dark:bg-green-400 rounded-full animate-pulse" />
-              <span className="text-sm sm:text-base font-semibold text-purple-700 dark:text-green-300 transition-colors duration-500">
-                {t('hero.greeting')}
-              </span>
-            </div>
-
-            {/* Name */}
-            <h1
-              className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 sm:mb-5 tracking-tight transition-all duration-700 delay-200 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              } ${dir === 'rtl' ? 'font-sahel' : ''}`}
-            >
-              <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-tight transition-colors duration-500">
-                {t('hero.name')}
-              </span>
-            </h1>
-
-            {/* Title */}
-            <h2
-              className={`text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 transition-all duration-700 delay-300 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              } ${dir === 'rtl' ? 'font-sahel' : ''}`}
-            >
-              <span className="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-700 dark:from-green-400 dark:via-green-300 dark:to-green-500 bg-clip-text text-transparent transition-colors duration-500">
-                {t('hero.title')}
-              </span>
-            </h2>
-
-            {/* Subtitle */}
-            <h3
-              className={`text-base sm:text-lg lg:text-xl font-semibold text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 transition-all duration-700 delay-400 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              } ${dir === 'rtl' ? 'font-sahel' : ''}`}
-            >
-              {t('hero.subtitle')}
-            </h3>
-
-            {/* Description */}
-            <div className="mx-auto max-w-2xl mb-8 sm:mb-10">
-              <p
-                className={`text-xs sm:text-sm lg:text-base leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-line transition-all duration-700 delay-500 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                } ${dir === 'rtl' ? 'font-sahel text-justify' : 'text-left'}`}
-              >
-                {t('hero.description')}
-              </p>
-            </div>
-
-            {/* CTA Buttons */}
-            <div
-              className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-10 transition-all duration-700 delay-600 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              <Button
-                size="lg"
-                onClick={() => scrollToElement('showcase')}
-                className={`group relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 dark:from-green-600 dark:to-green-700 dark:hover:from-green-700 dark:hover:to-green-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ${
-                  dir === 'rtl' ? 'font-sahel' : ''
-                }`}
-              >
-                <span className="relative z-10 flex items-center gap-2 sm:gap-3 justify-center">
-                  {t('hero.cta')}
-                  <ArrowRight
-                    className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 ${
-                      dir === 'rtl' ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'
-                    }`}
-                  />
-                </span>
-              </Button>
-
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => scrollToElement('contact')}
-                className={`group font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl sm:rounded-2xl border-2 border-purple-300 dark:border-green-400 text-purple-700 dark:text-green-300 hover:bg-purple-50 dark:hover:bg-green-900/20 hover:border-purple-400 dark:hover:border-green-300 transform hover:scale-105 transition-all duration-300 ${
-                  dir === 'rtl' ? 'font-sahel' : ''
-                }`}
-              >
-                {t('hero.ctaSecondary')}
-              </Button>
-            </div>
-
-            {/* Social Links */}
-            <div className={`flex justify-center gap-4 sm:gap-6 mb-6 sm:mb-8`}>
-              {[
-                { icon: Github, href: personalInfo.github, label: 'GitHub' },
-                { icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
-                { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
-                { icon: Phone, href: `tel:${personalInfo.phone}`, label: 'Phone' },
-              ].map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="group inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gray-100 dark:bg-gray-800 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:bg-purple-200 dark:hover:bg-green-700 hover:border-purple-400 dark:hover:border-green-500 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-green-400 transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-green-400"
-                >
-                  <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                </a>
-              ))}
-            </div>
-
-            {/* Scroll Indicator */}
-            <button
-              onClick={() => scrollToElement('showcase')}
-              className={`p-3 sm:p-4 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-purple-100/30 dark:hover:bg-green-900 transition-all duration-300 animate-bounce hover:animate-none ${
-                isVisible ? 'opacity-100' : 'opacity-0'
-              }`}
-              aria-label="Scroll down to showcase section"
-            >
-              <ChevronDown className="w-6 h-6 sm:w-7 sm:h-7 text-purple-600 dark:text-green-400 transition-colors duration-300" />
-            </button>
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-black shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(34,211,238,0.15)]">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500" />
+            </span>
+            <span className={`text-[11px] font-bold tracking-widest uppercase text-neutral-600 dark:text-cyan-400 ${language === 'fa' ? 'font-sahel' : ''}`}>
+              {language === 'fa' ? 'آماده پروژه' : 'ONLINE / AVAILABLE'}
+            </span>
           </div>
         </div>
-      </div>
 
-      {/* Breathing animation */}
-      <style jsx>{`
-        @keyframes breathe {
-          0%, 100% { transform: scale(1) translateY(0px); }
-          50% { transform: scale(1.05) translateY(-8px); }
-        }
-      `}</style>
+        {/* Massive Name */}
+        <h1
+          className={`relative mb-6 transition-all duration-1000 delay-100 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className="flex flex-col items-center leading-[0.85] tracking-tighter select-none drop-shadow-2xl">
+            <span className={`text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] font-black text-neutral-900 dark:text-white ${language === 'fa' ? 'font-sahel tracking-normal' : ''}`}>
+              {nameDisplay}
+            </span>
+            <span className={`text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] font-black text-neutral-300 dark:text-neutral-800 ${language === 'fa' ? 'font-sahel tracking-normal text-5xl sm:text-7xl' : ''}`}>
+              {surnameDisplay}
+            </span>
+          </div>
+        </h1>
+
+        {/* Tech Roles - Monochromatic */}
+        <h2
+          className={`mb-12 text-lg sm:text-xl md:text-2xl font-medium tracking-wide text-neutral-600 dark:text-neutral-400 transition-all duration-1000 delay-200 ease-out flex flex-wrap justify-center items-center gap-x-4 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          } ${language === 'fa' ? 'font-sahel' : ''}`}
+        >
+          <span>Next.js Specialist</span>
+          <span className="text-neutral-300 dark:text-neutral-700 text-sm">/</span>
+          <span>Software Engineer</span>
+          <span className="text-neutral-300 dark:text-neutral-700 text-sm">/</span>
+          <span>Creative Dev</span>
+        </h2>
+
+        {/* Interactive Description - The "HUD" Effect */}
+        <div 
+          className={`relative w-full max-w-3xl mx-auto mb-16 group cursor-default transition-all duration-500 ease-out min-h-[140px] flex items-center justify-center ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+          style={{ transitionDelay: '300ms' }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* Short Note (Default) */}
+          <div 
+            className={`absolute inset-0 w-full flex items-center justify-center transition-all duration-500 ${
+              isHovered ? 'opacity-0 scale-95 blur-sm pointer-events-none' : 'opacity-100 scale-100 delay-200'
+            }`}
+          >
+            <p className={`text-sm sm:text-base font-mono text-neutral-400 dark:text-neutral-500 flex items-center gap-2 ${language === 'fa' ? 'font-sahel' : ''}`}>
+              <Terminal className="w-4 h-4" />
+              {shortDescription}
+            </p>
+          </div>
+
+          {/* Full Specs (Hover) */}
+          <div 
+            className={`relative z-10 text-base sm:text-lg leading-relaxed text-neutral-700 dark:text-neutral-300 transition-all duration-500 ${
+              isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+            } ${language === 'fa' ? 'font-sahel text-right' : 'text-left'}`}
+          >
+            <div className="bg-white/50 dark:bg-neutral-900/50 backdrop-blur-md rounded-xl p-6 border border-neutral-200 dark:border-neutral-800 shadow-2xl">
+              {activeContent.map((item, i) => (
+                item.break ? (
+                  <br key={i} />
+                ) : (
+                  <span 
+                    key={i}
+                    className={`${
+                      item.highlight 
+                        ? 'text-black dark:text-cyan-400 font-bold drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]' 
+                        : ''
+                    }`}
+                  >
+                    {item.text}
+                  </span>
+                )
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div
+          className={`flex flex-col sm:flex-row items-center gap-6 transition-all duration-1000 delay-500 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <Button
+            onClick={() => scrollToElement('showcase')}
+            className={`h-14 px-10 rounded-none skew-x-[-10deg] bg-neutral-900 hover:bg-black dark:bg-white dark:hover:bg-cyan-400 dark:hover:text-black text-white dark:text-black font-bold text-sm tracking-widest transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] border border-transparent ${language === 'fa' ? 'font-sahel' : ''}`}
+          >
+            <span className="skew-x-[10deg] inline-flex items-center gap-2">
+              {language === 'fa' ? 'دیدن پروژه‌ها' : 'VIEW PROJECTS'}
+              <ArrowRight className={`w-4 h-4 ${language === 'fa' ? 'rotate-180' : ''}`} />
+            </span>
+          </Button>
+
+          <div className="flex items-center gap-4">
+            {[
+              { icon: Github, href: personalInfo.github, label: 'GitHub' },
+              { icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
+              { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' }
+            ].map(({ icon: Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-500 dark:text-neutral-400 hover:border-neutral-900 dark:hover:border-cyan-400 hover:text-neutral-900 dark:hover:text-cyan-400 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(34,211,238,0.2)]"
+                aria-label={label}
+              >
+                <Icon className="w-5 h-5" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+      </div>
     </section>
   )
 }

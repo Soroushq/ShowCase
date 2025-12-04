@@ -1,3 +1,4 @@
+// File: src/app/layout.tsx
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
@@ -13,7 +14,6 @@ const inter = Inter({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
 })
 
-// Local Sahel for RTL
 const sahel = localFont({
   variable: '--font-sahel',
   display: 'swap',
@@ -36,10 +36,10 @@ export const metadata: Metadata = {
   },
   description:
     'Showcasing previous works, capabilities, and contact info for a full‑stackish front‑end developer specializing in React and Next.js.',
-    keywords: [
-      'portfolio', 'web developer', 'react', 'nextjs', 'full-stack',
-      'Soroush Qary', 'Soroush Qary Ivary', 'سروش قاری', 'سروش قاری ایوری'
-    ],
+  keywords: [
+    'portfolio', 'web developer', 'react', 'nextjs', 'full-stack',
+    'Soroush Qary', 'Soroush Qary Ivary', 'سروش قاری', 'سروش قاری ایوری'
+  ],
   authors: [{ name: 'Soroush Qary Ivary' }],
   robots: { index: true, follow: true },
   alternates: {
@@ -75,7 +75,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#111827' },
+    { media: '(prefers-color-scheme: dark)', color: '#111827' }, // matches dark.primary
   ],
 }
 
@@ -96,7 +96,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </LanguageProvider>
         </ThemeProvider>
 
-        {/* JSON-LD structured data */}
         <Script
           id="ld-json-site"
           type="application/ld+json"
@@ -144,8 +143,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 'https://www.linkedin.com/in/soroush-qary-08392334b',
                 'https://www.instagram.com/soroushqi',
               ]
-            }
-            ),
+            }),
           }}
         />
       </body>

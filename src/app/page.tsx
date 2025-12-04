@@ -1,3 +1,4 @@
+// File: src/app/page.tsx
 'use client'
 
 import dynamic from 'next/dynamic'
@@ -5,7 +6,6 @@ import { Navigation } from './components/sections/Navigation'
 import { HeroSection } from './components/sections/HeroSection'
 import { LanguageProvider } from './components/providers/LanguageProvider'
 
-// Defer non-critical sections for faster initial paint
 const ShowcaseSection = dynamic(
   () => import('./components/sections/ShowcaseSection').then(m => m.ShowcaseSection),
   { ssr: true, loading: () => <div className="section-padding container-width">Loading showcase…</div> }
@@ -24,7 +24,16 @@ const ContactSection = dynamic(
 export default function Home() {
   return (
     <LanguageProvider>
-      <main id="main" className="min-h-screen bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text overflow-x-hidden">
+      <main
+        id="main"
+        className="
+          min-h-screen
+          bg-light-primary dark:bg-dark-primary
+          text-light-text dark:text-dark-text
+          overflow-x-hidden
+          pt-24 sm:pt-28
+        "
+      >
         <Navigation />
         <HeroSection />
         <ShowcaseSection />

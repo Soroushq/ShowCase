@@ -26,44 +26,44 @@ export const portfolioData: PortfolioItem[] = [
   {
     id: 1,
     title: "Abrishampoosh - Full-Stack E-Commerce Platform",
-    description: "Complete enterprise e-commerce solution with custom admin dashboard, Next.js API routes, Docker deployment on VPS, Cloudflare DNS integration, and comprehensive SEO optimization for all pages and products.",
-    image: "/pics/abrishampoosh.png",
+    description: "Enterprise e-commerce with custom admin dashboard, Next.js APIs, Docker on VPS, Cloudflare DNS, and full SEO implementation.",
+    image: "/pics/abrishampoosh.jpg",
     url: "https://abrishampoosh.com",
-    technologies: ["Next.js", "TypeScript", "Node.js", "Docker", "Cloudflare", "VPS", "TailwindCSS", "SEO", "Admin Dashboard"],
+    technologies: ["Next.js", "TypeScript", "Node.js", "Docker", "Cloudflare", "VPS", "TailwindCSS", "SEO"],
     category: "web"
   },
   {
     id: 2,
-    title: "Soroushop - Complete E-Commerce Experience",
-    description: "A bilingual e-commerce platform showcasing modern React architecture with intelligent language detection, seamless dark/light mode transitions, and advanced state management.",
-    image: "/pics/shop.png",
+    title: "Soroushop - Frontend E-Commerce Demo",
+    description: "Client-side e-commerce interface with bilingual support, dark/light themes, Redux state management, and responsive design.",
+    image: "/pics/shop.jpg",
     url: "https://soroushop.vercel.app",
-    technologies: ["React", "TypeScript", "Next.js", "Vite", "TailwindCSS", "Material UI", "Redux Toolkit", "Firebase"],
+    technologies: ["React", "TypeScript", "Vite", "Redux Toolkit", "TailwindCSS", "Material UI"],
     category: "web"
   },
   {
     id: 3,
-    title: "Barname - Next.js Showcase Application",
-    description: "A cutting-edge web application demonstrating the latest Next.js capabilities, optimized for performance and scalability.",
-    image: "/pics/barname.png",
+    title: "Barname - Next.js Application",
+    description: "Modern web app showcasing Next.js 14+ features with optimized performance and scalability.",
+    image: "/pics/barname.jpg",
     url: "https://barname.vercel.app",
     technologies: ["Next.js", "TypeScript", "TailwindCSS"],
     category: "web"
   },
   {
     id: 4,
-    title: "AramControl - Enterprise Management System",
-    description: "A comprehensive electronics pricing and inventory management solution designed for corporate environments.",
-    image: "/pics/pricing.png",
+    title: "AramControl - Enterprise Management",
+    description: "Electronics pricing and inventory system with order tracking and financial tools.",
+    image: "/pics/pricing.jpg",
     url: "https://aramcontrol.com/PE-IV",
     technologies: ["React", "Node.js", "TypeScript", "TailwindCSS"],
     category: "web"
   },
   {
     id: 5,
-    title: "Educational Personnel Management Platform",
-    description: "An Angular-based application serving the Department of Education for province-wide personnel management.",
-    image: "/pics/sajfa.png",
+    title: "Educational Personnel Platform",
+    description: "Angular-based personnel management system for province-wide education administration.",
+    image: "/pics/sajfa.jpg",
     url: "#",
     technologies: ["Angular 17", "TypeScript", "TailwindCSS", "Material Design"],
     category: "web"
@@ -74,35 +74,35 @@ export const portfolioDataFa: PortfolioItem[] = [
   {
     id: 1,
     title: "ابریشم‌پوش - پلتفرم فروشگاهی فول‌استک",
-    description: "راه‌حل کامل فروشگاه آنلاین سازمانی با داشبورد ادمین سفارشی، API های Next.js، دیپلوی Docker روی VPS، یکپارچه‌سازی Cloudflare DNS و بهینه‌سازی سئوی جامع.",
-    image: "/pics/abrishampoosh.png",
+    description: "فروشگاه سازمانی با داشبورد ادمین، APIهای Next.js، Docker روی VPS، Cloudflare DNS و سئوی کامل.",
+    image: "/pics/abrishampoosh.jpg",
     url: "https://abrishampoosh.com",
-    technologies: ["Next.js", "TypeScript", "Node.js", "Docker", "Cloudflare", "VPS", "TailwindCSS", "SEO", "Admin Dashboard"],
+    technologies: ["Next.js", "TypeScript", "Node.js", "Docker", "Cloudflare", "VPS", "TailwindCSS", "SEO"],
     category: "web"
   },
   {
     id: 2,
-    title: "سروشاپ - پلتفرم جامع فروشگاه آنلاین",
-    description: "فروشگاه آنلاین دوزبانه با معماری مدرن React، تشخیص هوشمند زبان، تغییر روان حالت تاریک/روشن و مدیریت پیشرفته state.",
-    image: "/pics/shop.png",
+    title: "سروشاپ - نمونه رابط کاربری فروشگاهی",
+    description: "رابط فروشگاهی دوزبانه با پشتیبانی از حالت تاریک/روشن، مدیریت state با Redux و طراحی واکنش‌گرا.",
+    image: "/pics/shop.jpg",
     url: "https://soroushop.vercel.app",
-    technologies: ["React", "TypeScript", "Next.js", "Vite", "TailwindCSS", "Material UI", "Redux Toolkit", "Firebase"],
+    technologies: ["React", "TypeScript", "Vite", "Redux Toolkit", "TailwindCSS", "Material UI"],
     category: "web"
   },
   {
     id: 3,
-    title: "برنامه - اپلیکیشن نمایشی Next.js",
-    description: "اپلیکیشن وب پیشرفته که آخرین قابلیت‌های Next.js را نمایش می‌دهد، بهینه‌سازی شده برای عملکرد و مقیاس‌پذیری.",
-    image: "/pics/barname.png",
+    title: "برنامه - اپلیکیشن Next.js",
+    description: "وب‌اپ مدرن با قابلیت‌های Next.js 14+ بهینه‌سازی شده برای عملکرد و مقیاس‌پذیری.",
+    image: "/pics/barname.jpg",
     url: "https://barname.vercel.app",
     technologies: ["Next.js", "TypeScript", "TailwindCSS"],
     category: "web"
   },
   {
     id: 4,
-    title: "آرام‌کنترل - سیستم مدیریت سازمانی",
-    description: "راه‌حل جامع قیمت‌گذاری الکترونیک و مدیریت موجودی طراحی شده برای محیط‌های شرکتی.",
-    image: "/pics/pricing.png",
+    title: "آرام‌کنترل - مدیریت سازمانی",
+    description: "سیستم قیمت‌گذاری و موجودی الکترونیک با ردیابی سفارش و ابزارهای مالی.",
+    image: "/pics/pricing.jpg",
     url: "https://aramcontrol.com/PE-IV",
     technologies: ["React", "Node.js", "TypeScript", "TailwindCSS"],
     category: "web"
@@ -110,13 +110,14 @@ export const portfolioDataFa: PortfolioItem[] = [
   {
     id: 5,
     title: "سامانه مدیریت پرسنل آموزشی",
-    description: "اپلیکیشن مبتنی بر Angular در خدمت آموزش و پرورش برای مدیریت پرسنل سراسر استان.",
-    image: "/pics/sajfa.png",
+    description: "سیستم Angular برای مدیریت پرسنل آموزش‌وپرورش سراسر استان.",
+    image: "/pics/sajfa.jpg",
     url: "#",
     technologies: ["Angular 17", "TypeScript", "TailwindCSS", "Material Design"],
     category: "web"
   },
 ]
+
 
 export const personalInfo = {
   name: "Soroush Qary Ivary",

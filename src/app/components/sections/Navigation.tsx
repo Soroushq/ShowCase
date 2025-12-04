@@ -1,9 +1,9 @@
+// File: src/app/components/layout/Navigation.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
-// import { Button } from '@/app/components/ui/Button'
-import  ThemeToggle  from '@/app/components/ui/ThemeToggle'
-import { Globe, Menu, X } from 'lucide-react'
+import ThemeToggle from '@/app/components/ui/ThemeToggle'
+import { Menu, X } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
 import { scrollToElement } from '@/app/lib/utils'
 
@@ -14,7 +14,7 @@ export function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -33,38 +33,46 @@ export function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-xl border-b border-gray-200/50 dark:border-gray-700/50' 
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ${
+        isScrolled || isMenuOpen
+          ? 'bg-white/95 dark:bg-[#050608]/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 shadow-sm' 
+          : 'bg-transparent py-4 sm:py-6'
       }`}
       dir={dir}
     >
-      {/* Fixed Width Container - Prevents RTL/LTR Shifting */}
-      <div className="w-full max-w-full mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="flex items-center justify-between h-20">
+      {/* Container */}
+      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* Logo - Fixed Position */}
-          <div className="flex-shrink-0 w-48">
+          {/* Logo Area */}
+          <div className="flex-shrink-0">
             <button
               onClick={() => scrollToElement('hero')}
-              className={`text-2xl sm:text-3xl font-black text-purple-600 dark:text-green-400 hover:text-purple-700 dark:hover:text-green-300 transition-all duration-300 hover:scale-105 ${
-                dir === 'rtl' ? 'font-sahel' : ''
-              }`}
+              className="group flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
-              {dir === 'rtl' ? 'نمونه کار ها' : 'Portfolio'}
+              {/* Icon Box (Always Visible) */}
+              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-neutral-900 dark:bg-white rounded-lg flex items-center justify-center shadow-lg">
+                <span className="text-white dark:text-black font-black text-lg sm:text-xl leading-none">S</span>
+              </div>
+              
+              {/* Text (Hidden on Mobile) */}
+              <span className={`hidden sm:block text-xl font-black tracking-tighter text-neutral-900 dark:text-white ${
+                dir === 'rtl' ? 'font-sahel text-2xl' : 'font-mono'
+              }`}>
+                {dir === 'rtl' ? 'سروش.دِو' : 'SOROUSH.DEV'}
+              </span>
             </button>
           </div>
 
-          {/* Desktop Navigation - Centered with Better Spacing */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex flex-1 justify-center">
-            <div className={`flex items-center ${dir === 'rtl' ? 'flex-row-reverse' : ''} gap-8 lg:gap-12`}>
+            <div className={`flex items-center ${dir === 'rtl' ? 'flex-row-reverse' : ''} gap-8 lg:gap-10`}>
               {navItems.map((item) => (
                 <button
                   key={item.key}
                   onClick={() => scrollToElement(item.href.slice(1))}
-                  className={`text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-green-400 px-4 py-2 rounded-xl hover:bg-purple-50 dark:hover:bg-green-900/20 transition-all duration-300 hover:scale-105 ${
-                    dir === 'rtl' ? 'font-sahel' : ''
+                  className={`text-sm font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all duration-300 hover:-translate-y-0.5 ${
+                    dir === 'rtl' ? 'font-sahel tracking-normal text-base' : ''
                   }`}
                 >
                   {t(`nav.${item.key}`)}
@@ -73,74 +81,60 @@ export function Navigation() {
             </div>
           </div>
 
-          {/* Controls - Fixed Position */}
-          <div className={`hidden md:flex items-center w-48 justify-end ${dir === 'rtl' ? 'flex-row-reverse' : ''} gap-4`}>
-            {/* Language Toggle - Standalone Button */}
+          {/* Controls Area (Desktop + Mobile Unified Style) */}
+          <div className={`flex items-center gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
+            
+            {/* Language Toggle (Simple Button) */}
             <button
               type="button"
               onClick={toggleLanguage}
-              className="relative h-12 w-12 rounded-xl bg-gray-100/80 dark:bg-gray-800/80 hover:bg-purple-100 dark:hover:bg-green-900/30 border border-gray-200/50 dark:border-gray-700/50 transition-all duration-300 hover:scale-105 flex items-center justify-center"
+              className={`w-10 h-10 flex items-center justify-center rounded-full border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 text-xs font-black text-neutral-600 hover:text-black dark:text-neutral-400 dark:hover:text-white transition-all duration-300 uppercase ${dir === 'rtl' ? 'font-sahel' : ''}`}
               aria-label="Toggle language"
             >
-              <Globe className="h-6 w-6 text-gray-600 dark:text-gray-300" />
-              <span className="absolute -top-2 -right-2 text-xs font-bold bg-purple-600 dark:bg-green-500 text-white px-2 py-1 rounded-full">
-                {language.toUpperCase()}
-              </span>
+              {language === 'en' ? 'FA' : 'EN'}
             </button>
             
-            {/* Theme Toggle - Isolated and Clickable */}
-            <div className="relative z-10">
-              <ThemeToggle />
-            </div>
-          </div>
-
-          {/* Mobile Controls */}
-          <div className={`md:hidden flex items-center ${dir === 'rtl' ? 'flex-row-reverse' : ''} gap-3`}>
-            {/* Language Toggle Mobile */}
-            <button
-              type="button"
-              onClick={toggleLanguage}
-              className="relative h-10 w-10 rounded-xl bg-gray-100/80 dark:bg-gray-800/80 hover:bg-purple-100 dark:hover:bg-green-900/30 flex items-center justify-center"
-              aria-label="Toggle language"
-            >
-              <Globe className="h-5 w-5 text-gray-600 dark:text-gray-300" />
-              <span className="absolute -top-1 -right-1 text-xs font-bold bg-purple-600 dark:bg-green-500 text-white px-1.5 py-0.5 rounded-full">
-                {language.toUpperCase()}
-              </span>
-            </button>
-            
-            {/* Theme Toggle Mobile - Isolated */}
-            <div className="relative z-10">
+            {/* Theme Toggle */}
+            <div className="relative z-10 flex items-center">
               <ThemeToggle />
             </div>
             
-            {/* Menu Toggle */}
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="h-10 w-10 rounded-xl bg-gray-100/80 dark:bg-gray-800/80 hover:bg-purple-100 dark:hover:bg-green-900/30 text-gray-600 dark:text-gray-300 flex items-center justify-center"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            {/* Menu Toggle (Mobile Only - Matching Style) */}
+            <div className="md:hidden">
+               <button
+                type="button"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className={`w-10 h-10 flex items-center justify-center rounded-full border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ${isMenuOpen ? 'bg-neutral-100 dark:bg-neutral-800' : 'bg-transparent'}`}
+                aria-label="Toggle menu"
+              >
+                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden pb-6">
-            <div className="mx-4 mt-4 backdrop-blur-md bg-white/90 dark:bg-gray-900/90 border border-gray-200/50 dark:border-gray-700/50 rounded-2xl p-6 shadow-2xl">
-              <div className="space-y-4">
-                {navItems.map((item) => (
+        {/* Mobile Navigation Menu */}
+              {isMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 pb-4">
+            <div className="mt-2 mx-0 sm:mx-2 backdrop-blur-md bg-white/95 dark:bg-gray-950/95 border border-gray-200/60 dark:border-gray-800/60 rounded-2xl p-4 shadow-2xl">
+              <div className="space-y-2">
+                {navItems.map(item => (
                   <button
                     key={item.key}
                     onClick={() => {
                       scrollToElement(item.href.slice(1))
                       setIsMenuOpen(false)
                     }}
-                    className={`block w-full text-center px-4 py-4 text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-white rounded-xl hover:bg-purple-600 dark:hover:bg-green-600 transition-all duration-300 ${
-                      dir === 'rtl' ? 'font-sahel' : ''
-                    }`}
+                    className={`
+                      block w-full text-center px-4 py-3
+                      text-sm font-bold uppercase tracking-[0.15em]
+                      text-neutral-600 dark:text-neutral-300
+                      hover:text-white
+                      rounded-xl
+                      hover:bg-neutral-900 dark:hover:bg-neutral-700
+                      transition-all duration-200
+                      ${dir === 'rtl' ? 'font-sahel tracking-normal text-base' : ''}
+                    `}
                   >
                     {t(`nav.${item.key}`)}
                   </button>
