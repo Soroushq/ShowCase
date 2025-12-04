@@ -5,9 +5,11 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sun, Moon, Star } from 'lucide-react'
+import { useLanguage } from '@/app/hooks/useLanguage'
 
 export default function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme()
+  const { language, dir } = useLanguage()
   const [mounted, setMounted] = useState(false)
   const [showToast, setShowToast] = useState(false)
 
@@ -15,7 +17,7 @@ export default function ThemeToggle() {
     setMounted(true)
     // Show toast on mount to inform user of current theme
     setShowToast(true)
-    const timer = setTimeout(() => setShowToast(false), 2500)
+    const timer = setTimeout(() => setShowToast(false), 3000)
     return () => clearTimeout(timer)
   }, [])
 
@@ -35,9 +37,14 @@ export default function ThemeToggle() {
   }
 
   const isDark = resolvedTheme === 'dark'
+  
+  // Translation for toast messages
+  const toastMessage = language === 'fa' 
+    ? (isDark ? 'حالت تاریک فعال' : 'حالت روشن فعال')
+    : (isDark ? 'Dark mode active' : 'Light mode active')
 
   return (
-    <>
+    <div className="relative">
       {/* Animated Toggle Button */}
       <motion.button
         onClick={toggleTheme}
@@ -167,40 +174,70 @@ export default function ThemeToggle() {
         </AnimatePresence>
       </motion.button>
 
-      {/* Toast Notification */}
+      {/* Toast Notification with Thinking Bubble Pointer */}
       <AnimatePresence>
         {showToast && (
           <motion.div
-            initial={{ opacity: 0, x: 100, scale: 0.8 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 100, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 10 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl backdrop-blur-md border pointer-events-none"
-            style={{
-              backgroundColor: isDark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-              borderColor: isDark ? 'rgba(71, 85, 105, 0.5)' : 'rgba(209, 213, 219, 0.5)',
-            }}
+            className={`absolute top-full mt-3 whitespace-nowrap z-50 ${
+              dir === 'rtl' ? 'left-0' : 'right-0'
+            }`}
           >
-            <motion.div
-              initial={{ rotate: -90 }}
-              animate={{ rotate: 0 }}
-              transition={{ type: 'spring', stiffness: 200 }}
+            {/* Thinking Bubble Pointer */}
+            <div className={`absolute -top-2 ${dir === 'rtl' ? 'left-3' : 'right-3'} flex ${dir === 'rtl' ? 'flex-row' : 'flex-row-reverse'} items-center gap-1`}>
+              <div 
+                className="w-2 h-2 rounded-full"
+                style={{
+                  backgroundColor: isDark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+                }}
+              />
+              <div 
+                className="w-1.5 h-1.5 rounded-full"
+                style={{
+                  backgroundColor: isDark ? 'rgba(30, 41, 59, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+                }}
+              />
+              <div 
+                className="w-1 h-1 rounded-full"
+                style={{
+                  backgroundColor: isDark ? 'rgba(30, 41, 59, 0.6)' : 'rgba(255, 255, 255, 0.6)',
+                }}
+              />
+            </div>
+
+            {/* Toast Content */}
+            <div
+              className="flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl backdrop-blur-md border"
+              style={{
+                backgroundColor: isDark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+                borderColor: isDark ? 'rgba(71, 85, 105, 0.5)' : 'rgba(209, 213, 219, 0.5)',
+              }}
+              dir={dir}
             >
-              {isDark ? (
-                <Moon className="w-5 h-5 text-blue-400" />
-              ) : (
-                <Sun className="w-5 h-5 text-orange-500" />
-              )}
-            </motion.div>
-            <span 
-              className="font-semibold text-sm whitespace-nowrap"
-              style={{ color: isDark ? '#f1f5f9' : '#1e293b' }}
-            >
-              {isDark ? 'Dark mode active' : 'Light mode active'}
-            </span>
+              <motion.div
+                initial={{ rotate: -90 }}
+                animate={{ rotate: 0 }}
+                transition={{ type: 'spring', stiffness: 200 }}
+              >
+                {isDark ? (
+                  <Moon className="w-5 h-5 text-blue-400" />
+                ) : (
+                  <Sun className="w-5 h-5 text-orange-500" />
+                )}
+              </motion.div>
+              <span 
+                className={`font-semibold text-sm ${language === 'fa' ? 'font-sahel' : ''}`}
+                style={{ color: isDark ? '#f1f5f9' : '#1e293b' }}
+              >
+                {toastMessage}
+              </span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }

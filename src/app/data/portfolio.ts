@@ -1,3 +1,4 @@
+// File: src/app/data/portfolio.ts
 export interface PortfolioItem {
   id: number
   title: string
@@ -21,91 +22,108 @@ export interface SocialLink {
   color: string
 }
 
-export const portfolioData = [
+export const portfolioData: PortfolioItem[] = [
   {
     id: 1,
+    title: "Abrishampoosh - Full-Stack E-Commerce Platform",
+    description: "Complete enterprise e-commerce solution with custom admin dashboard, Next.js API routes, Docker deployment on VPS, Cloudflare DNS integration, and comprehensive SEO optimization for all pages and products.",
+    image: "/pics/abrishampoosh.png",
+    url: "https://abrishampoosh.com",
+    technologies: ["Next.js", "TypeScript", "Node.js", "Docker", "Cloudflare", "VPS", "TailwindCSS", "SEO", "Admin Dashboard"],
+    category: "web"
+  },
+  {
+    id: 2,
     title: "Soroushop - Complete E-Commerce Experience",
-    description: "A bilingual e-commerce platform showcasing modern React architecture with intelligent language detection, seamless dark/light mode transitions, and advanced state management. Features include optimized product catalogs, smart cart functionality, and responsive design patterns.",
+    description: "A bilingual e-commerce platform showcasing modern React architecture with intelligent language detection, seamless dark/light mode transitions, and advanced state management.",
     image: "/pics/shop.png",
     url: "https://soroushop.vercel.app",
-    technologies: ["React", "TypeScript", "Next.js", "Vite", "TailwindCSS", "Material UI", "Redux Toolkit", "Redux Persist", "React Router", "Axios", "Firebase"],
+    technologies: ["React", "TypeScript", "Next.js", "Vite", "TailwindCSS", "Material UI", "Redux Toolkit", "Firebase"],
     category: "web"
   },
   {
-    id: 2,
+    id: 3,
     title: "Barname - Next.js Showcase Application",
-    description: "A cutting-edge web application demonstrating the latest Next.js capabilities, optimized for performance and scalability. Built with modern development practices and focused on delivering exceptional user experiences across all devices.",
+    description: "A cutting-edge web application demonstrating the latest Next.js capabilities, optimized for performance and scalability.",
     image: "/pics/barname.png",
     url: "https://barname.vercel.app",
     technologies: ["Next.js", "TypeScript", "TailwindCSS"],
     category: "web"
   },
   {
-    id: 3,
+    id: 4,
     title: "AramControl - Enterprise Management System",
-    description: "A comprehensive electronics pricing and inventory management solution designed for corporate environments. Features advanced order tracking, component management, and integrated financial tools for streamlined business operations.",
+    description: "A comprehensive electronics pricing and inventory management solution designed for corporate environments.",
     image: "/pics/pricing.png",
     url: "https://aramcontrol.com/PE-IV",
     technologies: ["React", "Node.js", "TypeScript", "TailwindCSS"],
     category: "web"
   },
   {
-    id: 4,
+    id: 5,
     title: "Educational Personnel Management Platform",
-    description: "An Angular-based application serving the Department of Education for province-wide personnel management. Implements complex administrative workflows with modern Material Design principles and responsive architecture.",
+    description: "An Angular-based application serving the Department of Education for province-wide personnel management.",
     image: "/pics/sajfa.png",
-    url: "#", // Internal system - no public access
+    url: "#",
     technologies: ["Angular 17", "TypeScript", "TailwindCSS", "Material Design"],
     category: "web"
   },
-];
+]
 
-export const portfolioDataFa = [
+export const portfolioDataFa: PortfolioItem[] = [
   {
     id: 1,
-    title: "سروشاپ - پلتفرم جامع فروشگاه آنلاین",
-    description: "فروشگاه آنلاین دوزبانه با معماری مدرن React، تشخیص هوشمند زبان، تغییر روان حالت تاریک/روشن و مدیریت پیشرفته state. شامل کاتالوگ بهینه محصولات، عملکرد هوشمند سبد خرید و طراحی واکنش‌گرا.",
-    image: "/pics/shop.png",
-    url: "https://soroushop.vercel.app",
-    technologies: ["React", "TypeScript", "Next.js", "Vite", "TailwindCSS", "Material UI", "Redux Toolkit", "Redux Persist", "React Router", "Axios", "Firebase"],
-    category: "وب"
+    title: "ابریشم‌پوش - پلتفرم فروشگاهی فول‌استک",
+    description: "راه‌حل کامل فروشگاه آنلاین سازمانی با داشبورد ادمین سفارشی، API های Next.js، دیپلوی Docker روی VPS، یکپارچه‌سازی Cloudflare DNS و بهینه‌سازی سئوی جامع.",
+    image: "/pics/abrishampoosh.png",
+    url: "https://abrishampoosh.com",
+    technologies: ["Next.js", "TypeScript", "Node.js", "Docker", "Cloudflare", "VPS", "TailwindCSS", "SEO", "Admin Dashboard"],
+    category: "web"
   },
   {
     id: 2,
-    title: "برنامه - اپلیکیشن نمایشی Next.js",
-    description: "اپلیکیشن وب پیشرفته که آخرین قابلیت‌های Next.js را نمایش می‌دهد، بهینه‌سازی شده برای عملکرد و مقیاس‌پذیری. ساخته شده با بهترین روش‌های توسعه مدرن و تمرکز بر ارائه تجربه استثنایی کاربری.",
-    image: "/pics/barname.png",
-    url: "https://barname.vercel.app",
-    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
-    category: "وب"
+    title: "سروشاپ - پلتفرم جامع فروشگاه آنلاین",
+    description: "فروشگاه آنلاین دوزبانه با معماری مدرن React، تشخیص هوشمند زبان، تغییر روان حالت تاریک/روشن و مدیریت پیشرفته state.",
+    image: "/pics/shop.png",
+    url: "https://soroushop.vercel.app",
+    technologies: ["React", "TypeScript", "Next.js", "Vite", "TailwindCSS", "Material UI", "Redux Toolkit", "Firebase"],
+    category: "web"
   },
   {
     id: 3,
-    title: "آرام‌کنترل - سیستم مدیریت سازمانی",
-    description: "راه‌حل جامع قیمت‌گذاری الکترونیک و مدیریت موجودی طراحی شده برای محیط‌های شرکتی. شامل ردیابی پیشرفته سفارشات، مدیریت اجزاء و ابزارهای مالی یکپارچه برای عملیات کسب‌وکار ساده.",
-    image: "/pics/pricing.png",
-    url: "https://aramcontrol.com/PE-IV",
-    technologies: ["React", "Node.js", "TypeScript", "TailwindCSS"],
-    category: "وب"
+    title: "برنامه - اپلیکیشن نمایشی Next.js",
+    description: "اپلیکیشن وب پیشرفته که آخرین قابلیت‌های Next.js را نمایش می‌دهد، بهینه‌سازی شده برای عملکرد و مقیاس‌پذیری.",
+    image: "/pics/barname.png",
+    url: "https://barname.vercel.app",
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    category: "web"
   },
   {
     id: 4,
-    title: "سامانه مدیریت پرسنل آموزشی",
-    description: "اپلیکیشن مبتنی بر Angular در خدمت آموزش و پرورش برای مدیریت پرسنل سراسر استان. پیاده‌سازی جریان‌های کاری پیچیده اداری با اصول مدرن Material Design و معماری واکنش‌گرا.",
-    image: "/pics/sajfa.png",
-    url: "#", // سیستم داخلی - بدون دسترسی عمومی
-    technologies: ["Angular 17", "TypeScript", "TailwindCSS", "Material Design"],
-    category: "وب"
+    title: "آرام‌کنترل - سیستم مدیریت سازمانی",
+    description: "راه‌حل جامع قیمت‌گذاری الکترونیک و مدیریت موجودی طراحی شده برای محیط‌های شرکتی.",
+    image: "/pics/pricing.png",
+    url: "https://aramcontrol.com/PE-IV",
+    technologies: ["React", "Node.js", "TypeScript", "TailwindCSS"],
+    category: "web"
   },
-];
-
+  {
+    id: 5,
+    title: "سامانه مدیریت پرسنل آموزشی",
+    description: "اپلیکیشن مبتنی بر Angular در خدمت آموزش و پرورش برای مدیریت پرسنل سراسر استان.",
+    image: "/pics/sajfa.png",
+    url: "#",
+    technologies: ["Angular 17", "TypeScript", "TailwindCSS", "Material Design"],
+    category: "web"
+  },
+]
 
 export const personalInfo = {
   name: "Soroush Qary Ivary",
-  title: "Frontend Developer",
+  title: "Full-Stack Developer",
   location: "Mashhad, Iran",
   experience: "2+ years",
-  projectsCompleted: 5,
+  projectsCompleted: 6,
   clientsSatisfied: "countless (:",
   email: "soroush.qary.eemit@gmail.com",
   linkedin: "https://www.linkedin.com/in/soroush-qary-08392334b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
@@ -114,18 +132,17 @@ export const personalInfo = {
   resumeFileName: "Soroush_Qary_Ivary_Resume.pdf"
 }
 
-export const skills = [
-  { name: "Next.js, Angular, JavaScript, TypeScript", level: 95, category: 'frontend' },
-  { name: "React, Redux, Context / REST API", level: 90, category: 'frontend' },
-  { name: "Vite, Webpack, Docker", level: 80, category: 'tools' },
-  { name: "TailwindCSS, CSS3, Responsive Design", level: 90, category: 'frontend' },
-  { name: "Git, Agile, Scrum", level: 85, category: 'tools' },
-  { name: "Debugging, Unit Testing, CI/CD", level: 75, category: 'tools' },
-  { name: "PHP, WordPress, Python", level: 85, category: 'backend' },
-  { name: "AI Integration, SEO Optimization", level: 80, category: 'backend' }
+export const skills: Skill[] = [
+  { name: "React, Next.js, Angular, TypeScript", level: 95, category: 'frontend' },
+  { name: "Node.js, API Design, Docker & VPS", level: 85, category: 'backend' },
+  { name: "Redux, Context API, REST & GraphQL", level: 90, category: 'frontend' },
+  { name: "TailwindCSS, Responsive Design", level: 92, category: 'frontend' },
+  { name: "Git, CI/CD, Cloudflare, DNS", level: 88, category: 'tools' },
+  { name: "SEO, Admin Dashboards, Testing", level: 85, category: 'tools' },
+  { name: "PHP, WordPress, Python", level: 80, category: 'backend' },
 ]
 
-export const socialLinks = [
+export const socialLinks: SocialLink[] = [
   {
     name: "GitHub",
     url: "https://github.com/Soroushq",

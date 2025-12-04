@@ -1,3 +1,4 @@
+// File: src/app/components/sections/AboutSection.tsx
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -16,7 +17,6 @@ export function AboutSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const scrollY = useParallax()
 
-  // Properly typed section ref for mouse tracking
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -40,13 +40,14 @@ export function AboutSection() {
     }
   }, [])
 
+  // ✅ Slower animation start: 800ms delay
   useEffect(() => {
     if (!isVisible) return
     const timer = setTimeout(() => {
       const next: AnimatedMap = {}
       for (const skill of skills) next[skill.name] = skill.level
       setAnimatedSkills(next)
-    }, 300)
+    }, 800) // Changed from 300ms to 800ms
     return () => clearTimeout(timer)
   }, [isVisible])
 
@@ -87,12 +88,12 @@ export function AboutSection() {
       className="relative overflow-hidden bg-gray-50 dark:bg-gray-900 transition-colors duration-500"
       dir={dir}
     >
-      {/* Lightweight gradient on mobile; full masked images only at sm+ */}
+      {/* Lightweight gradient on mobile */}
       <div className="absolute inset-0 sm:hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-100/60 to-transparent dark:from-gray-800/70" />
       </div>
 
-      {/* Background Image with Wave Mask - Light Mode (sm and up) */}
+      {/* Background Image with Wave Mask - Light Mode */}
       <div className="absolute inset-0 hidden sm:block dark:opacity-0 opacity-100 transition-opacity duration-500">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
@@ -117,7 +118,7 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* Background Image with Wave Mask - Dark Mode (sm and up) */}
+      {/* Background Image - Dark Mode */}
       <div className="absolute inset-0 hidden sm:block opacity-0 dark:opacity-100 transition-opacity duration-500">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
@@ -142,14 +143,13 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* Animated Floating Elements (hide on mobile) */}
+      {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div
           className="absolute top-1/4 right-1/4 w-72 lg:w-96 h-72 lg:h-96 rounded-full transition-colors duration-500"
           style={{
             transform: `translateY(${scrollY * 0.2}px) translateX(${mousePosition.x}px)`,
-            background:
-              'radial-gradient(closest-side, rgba(147,51,234,0.12), rgba(147,51,234,0) 70%)',
+            background: 'radial-gradient(closest-side, rgba(147,51,234,0.12), rgba(147,51,234,0) 70%)',
             filter: 'blur(80px)',
           }}
         />
@@ -157,8 +157,7 @@ export function AboutSection() {
           className="absolute bottom-1/3 left-1/4 w-56 lg:w-72 h-56 lg:h-72 rounded-full transition-colors duration-500"
           style={{
             transform: `translateY(${scrollY * -0.15}px) translateX(${mousePosition.x * -0.5}px)`,
-            background:
-              'radial-gradient(closest-side, rgba(59,130,246,0.10), rgba(59,130,246,0) 70%)',
+            background: 'radial-gradient(closest-side, rgba(59,130,246,0.10), rgba(59,130,246,0) 70%)',
             filter: 'blur(64px)',
           }}
         />
@@ -188,9 +187,7 @@ export function AboutSection() {
         </div>
 
         {/* Profile */}
-        <div
-          className={`mt-8 sm:mt-10 flex justify-center transition-all motion-safe:duration-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-        >
+        <div className={`mt-8 sm:mt-10 flex justify-center transition-all motion-safe:duration-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
           <div className="relative group">
             <div className="absolute -inset-3 sm:-inset-4 rounded-full opacity-30 group-hover:opacity-50 transition-all motion-safe:duration-500" />
             <div className="relative w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-full overflow-hidden border-3 sm:border-4 border-white/50 dark:border-gray-700/50 shadow-xl">
@@ -209,12 +206,7 @@ export function AboutSection() {
         {/* Grid */}
         <div className="mt-10 sm:mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-start">
           {/* Left: About + Stats */}
-          <div
-            className={`space-y-8 transition-all motion-safe:duration-700 ${
-              isVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${dir === 'rtl' ? 'translate-x-6' : '-translate-x-6'}`
-            }`}
-          >
-            {/* About Text */}
+          <div className={`space-y-8 transition-all motion-safe:duration-700 ${isVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${dir === 'rtl' ? 'translate-x-6' : '-translate-x-6'}`}`}>
             <div className="rounded-2xl p-6 sm:p-8 border border-white/30 dark:border-white/10 shadow-xl bg-white/70 dark:bg-black/20 sm:backdrop-blur-md">
               <div className={`space-y-4 sm:space-y-6 leading-relaxed ${dir === 'rtl' ? 'font-sahel text-right' : ''}`}>
                 <p className="text-gray-700 dark:text-gray-300 transition-colors duration-500">
@@ -256,12 +248,8 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Right: Skills (Tech Stack & Tools) */}
-          <div
-            className={`transition-all motion-safe:duration-700 ${
-              isVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${dir === 'rtl' ? '-translate-x-6' : 'translate-x-6'}`
-            }`}
-          >
+          {/* Right: Skills */}
+          <div className={`transition-all motion-safe:duration-700 ${isVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${dir === 'rtl' ? '-translate-x-6' : 'translate-x-6'}`}`}>
             <div className="rounded-2xl p-6 sm:p-8 border border-white/30 dark:border-white/10 shadow-xl bg-white/70 dark:bg-black/20 sm:backdrop-blur-md">
               <h3 className={`text-base sm:text-lg lg:text-xl font-black text-gray-900 dark:text-white mb-6 sm:mb-8 ${dir === 'rtl' ? 'font-sahel text-right' : ''}`}>
                 {t('about.skills')}
@@ -278,7 +266,6 @@ export function AboutSection() {
                       }`}
                       style={{ transitionDelay: `${300 + index * 90}ms` }}
                     >
-                      {/* Header row: name + category + percent */}
                       <div className={`flex items-center justify-between gap-2 flex-wrap ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
                         <div className={`flex items-center gap-2 min-w-0 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
                           <span className={`truncate text-sm sm:text-[0.95rem] font-bold text-gray-900 dark:text-white ${dir === 'rtl' ? 'font-sahel' : ''}`}>
@@ -293,7 +280,7 @@ export function AboutSection() {
                         </span>
                       </div>
 
-                      {/* Progress bar */}
+                      {/* ✅ Slower progress bar animation: 1400ms */}
                       <div className="relative mt-2">
                         <div
                           className="relative w-full h-2 sm:h-2.5 bg-gray-200/60 dark:bg-gray-700/30 rounded-full overflow-hidden"
@@ -304,11 +291,10 @@ export function AboutSection() {
                           aria-label={skill.name}
                         >
                           <div
-                            className="h-full rounded-full bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 dark:from-green-400 dark:via-green-500 dark:to-green-600 transition-all duration-700"
+                            className="h-full rounded-full bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 dark:from-green-400 dark:via-green-500 dark:to-green-600 transition-all ease-out duration-[1400ms]"
                             style={{ width: `${val}%` }}
                           />
                         </div>
-                        {/* Mobile-only category chip below the bar */}
                         <div className="xs:hidden mt-2">
                           <span className={`text-[0.7rem] px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 ${dir === 'rtl' ? 'font-sahel' : ''}`}>
                             {skill.category}
@@ -323,7 +309,6 @@ export function AboutSection() {
           </div>
         </div>
 
-        {/* Section spacing */}
         <div className="pb-[clamp(2.5rem,2rem+2vw,4rem)]" />
       </div>
     </section>

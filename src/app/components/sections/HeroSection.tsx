@@ -1,3 +1,4 @@
+// File: src/app/components/sections/HeroSection.tsx
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -16,7 +17,7 @@ export function HeroSection() {
   const scrollY = useParallax()
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 300)
+    const timer = setTimeout(() => setIsVisible(true), 200)
     return () => clearTimeout(timer)
   }, [])
 
@@ -41,14 +42,14 @@ export function HeroSection() {
         {/* Floating Blobs */}
         <div className="absolute inset-0">
           <div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-200/30 to-purple-300/20 dark:from-green-400/20 dark:to-green-600/10 rounded-full blur-3xl animate-pulse-slow transition-colors duration-500"
+            className="absolute top-1/4 left-1/4 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-gradient-to-r from-purple-200/30 to-purple-300/20 dark:from-green-400/20 dark:to-green-600/10 rounded-full blur-3xl animate-pulse-slow transition-colors duration-500"
             style={{
               transform: `translateY(${scrollY * 0.3}px) translateX(${mousePosition.x}px)`,
               filter: 'blur(80px)',
             }}
           />
           <div
-            className="absolute top-1/3 right-1/4 w-72 h-72 bg-gradient-to-l from-purple-100/25 to-purple-200/15 dark:from-green-500/15 dark:to-green-300/8 rounded-full blur-2xl animate-float-slow transition-colors duration-500"
+            className="absolute top-1/3 right-1/4 w-56 sm:w-64 lg:w-72 h-56 sm:h-64 lg:h-72 bg-gradient-to-l from-purple-100/25 to-purple-200/15 dark:from-green-500/15 dark:to-green-300/8 rounded-full blur-2xl animate-float-slow transition-colors duration-500"
             style={{
               transform: `translateY(${scrollY * -0.2}px) translateX(${mousePosition.x * -0.8}px)`,
               animationDelay: '1s',
@@ -58,13 +59,11 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Floating Hello World Element - Top Left - Only on large screens */}
-      <div className="hidden lg:block absolute top-16 left-8 xl:left-16 2xl:left-24 z-20 pointer-events-none">
+      {/* Floating Hello World - Desktop Only */}
+      <div className="hidden xl:block absolute top-12 2xl:top-16 left-12 2xl:left-20 z-20 pointer-events-none">
         <div
           className={`transition-all duration-1000 ease-out ${
-            isVisible
-              ? 'opacity-70 translate-y-0 scale-100'
-              : 'opacity-0 translate-y-8 scale-90'
+            isVisible ? 'opacity-60 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'
           }`}
           style={{
             transform: `translateY(${scrollY * 0.1}px) translateX(${mousePosition.x * -0.3}px)`,
@@ -74,21 +73,19 @@ export function HeroSection() {
           <Image
             src="/photos/hello-world.png"
             alt="Hello World"
-            width={200}
-            height={200}
-            className="w-32 h-32 xl:w-40 xl:h-40 2xl:w-48 2xl:h-48 object-contain drop-shadow-lg filter brightness-90 dark:brightness-110 transition-all duration-500"
+            width={160}
+            height={160}
+            className="w-32 2xl:w-40 h-32 2xl:h-40 object-contain drop-shadow-lg filter brightness-90 dark:brightness-110 transition-all duration-500"
             priority
           />
         </div>
       </div>
 
-      {/* Floating Purple Horn Element - Bottom Right - Only on large screens */}
-      <div className="hidden lg:block absolute bottom-16 right-8 xl:right-16 2xl:right-24 z-20 pointer-events-none">
+      {/* Floating Purple Horn - Desktop Only */}
+      <div className="hidden xl:block absolute bottom-12 2xl:bottom-16 right-12 2xl:right-20 z-20 pointer-events-none">
         <div
           className={`transition-all duration-1000 ease-out ${
-            isVisible
-              ? 'opacity-60 translate-y-0 scale-100'
-              : 'opacity-0 translate-y-8 scale-90'
+            isVisible ? 'opacity-50 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'
           }`}
           style={{
             transform: `translateY(${scrollY * -0.15}px) translateX(${mousePosition.x * 0.4}px)`,
@@ -98,56 +95,50 @@ export function HeroSection() {
           <Image
             src="/photos/png-purple-horn.svg"
             alt="Purple Horn Decoration"
-            width={180}
-            height={180}
-            className="w-28 h-28 xl:w-36 xl:h-36 2xl:w-44 2xl:h-44 object-contain drop-shadow-md filter brightness-95 dark:brightness-105 transition-all duration-500"
+            width={150}
+            height={150}
+            className="w-28 2xl:w-36 h-28 2xl:h-36 object-contain drop-shadow-md filter brightness-95 dark:brightness-105 transition-all duration-500"
             priority
           />
         </div>
       </div>
 
       {/* Main Content */}
-      <div
-        className="relative z-10 w-full min-h-screen flex items-center justify-center sm:px-10 lg:px-20 xl:px-32"
-        dir={dir}
-      >
-        <div className="max-w-7xl mx-auto text-center space-y-16 sm:space-y-20">
+      <div className="relative z-10 w-full min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12" dir={dir}>
+        <div className="max-w-5xl mx-auto text-center space-y-8 sm:space-y-10 lg:space-y-12">
+          
           {/* Glass Card */}
           <div
-            className={`backdrop-blur-sm bg-white/10 dark:bg-black/10 rounded-3xl p-8 sm:p-12 lg:p-20 border border-white/20 dark:border-white/5 shadow-2xl transition-all duration-1000 ${
-              isVisible
-                ? 'opacity-100 translate-y-0 scale-100'
-                : 'opacity-0 translate-y-12 scale-95'
+            className={`backdrop-blur-sm bg-white/10 dark:bg-black/10 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-16 border border-white/20 dark:border-white/5 shadow-2xl transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'
             }`}
           >
             {/* Greeting Badge */}
             <div
-              className={`inline-flex items-center gap-4 px-6 py-3 mb-10 bg-purple-50/80 dark:bg-green-900/30 backdrop-blur-sm rounded-full border border-purple-200/50 dark:border-green-700/30 transition-all duration-700 delay-200 ${
+              className={`inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 sm:py-2.5 mb-6 sm:mb-8 bg-purple-50/80 dark:bg-green-900/30 backdrop-blur-sm rounded-full border border-purple-200/50 dark:border-green-700/30 transition-all duration-700 delay-100 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               } ${dir === 'rtl' ? 'font-sahel' : ''}`}
             >
-              <div className="w-3 h-3 bg-purple-500 dark:bg-green-400 rounded-full animate-pulse" />
-              <span className="text-lg font-semibold text-purple-700 dark:text-green-300 transition-colors duration-500">
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-purple-500 dark:bg-green-400 rounded-full animate-pulse" />
+              <span className="text-sm sm:text-base font-semibold text-purple-700 dark:text-green-300 transition-colors duration-500">
                 {t('hero.greeting')}
               </span>
             </div>
-            <br />
 
             {/* Name */}
             <h1
-              className={`text-2xl sm:text-4xl lg:text-5xl xl:text-7xl font-black mb-6 tracking-tight transition-all duration-700 delay-300 ${
-                isVisible ? 'opacity-100 translate-y-6' : 'opacity-0 translate-y-8'
+              className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 sm:mb-5 tracking-tight transition-all duration-700 delay-200 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               } ${dir === 'rtl' ? 'font-sahel' : ''}`}
             >
-              <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-none transition-colors duration-500">
+              <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-tight transition-colors duration-500">
                 {t('hero.name')}
               </span>
             </h1>
-            <br />
 
             {/* Title */}
             <h2
-              className={`text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-8 transition-all duration-700 delay-400 ${
+              className={`text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 transition-all duration-700 delay-300 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               } ${dir === 'rtl' ? 'font-sahel' : ''}`}
             >
@@ -155,11 +146,10 @@ export function HeroSection() {
                 {t('hero.title')}
               </span>
             </h2>
-            <br />
 
             {/* Subtitle */}
             <h3
-              className={`text-lg sm:text-xl lg:text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-10 transition-all duration-700 delay-500 ${
+              className={`text-base sm:text-lg lg:text-xl font-semibold text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 transition-all duration-700 delay-400 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               } ${dir === 'rtl' ? 'font-sahel' : ''}`}
             >
@@ -167,38 +157,34 @@ export function HeroSection() {
             </h3>
 
             {/* Description */}
-          <div className="mx-auto w-full flex justify-center">
+            <div className="mx-auto max-w-2xl mb-8 sm:mb-10">
               <p
-                className={`text-sm sm:text-xl max-w-2xl sm:max-w-4xl leading-relaxed text-gray-700 dark:text-gray-300 mb-12 transition-all duration-700 delay-600 whitespace-pre-line ${
+                className={`text-xs sm:text-sm lg:text-base leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-line transition-all duration-700 delay-500 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                } ${dir === 'rtl' ? 'font-sahel text-justify' : 'text-justify'}`}
+                } ${dir === 'rtl' ? 'font-sahel text-justify' : 'text-left'}`}
               >
                 {t('hero.description')}
               </p>
-
-          </div>
-            <br />
+            </div>
 
             {/* CTA Buttons */}
             <div
-              className={`flex flex-col sm:flex-row gap-6 justify-center mb-14 transition-all duration-700 delay-700 ${
+              className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-10 transition-all duration-700 delay-600 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
               <Button
                 size="lg"
                 onClick={() => scrollToElement('showcase')}
-                className={`group relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 dark:from-green-600 dark:to-green-700 dark:hover:from-green-700 dark:hover:to-green-800 text-white font-semibold px-8 py-4 text-lg rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 dark:from-green-600 dark:to-green-700 dark:hover:from-green-700 dark:hover:to-green-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ${
                   dir === 'rtl' ? 'font-sahel' : ''
                 }`}
               >
-                <span className="relative z-10 flex items-center gap-3">
+                <span className="relative z-10 flex items-center gap-2 sm:gap-3 justify-center">
                   {t('hero.cta')}
                   <ArrowRight
-                    className={`w-5 h-5 transition-transform duration-300 ${
-                      dir === 'rtl'
-                        ? 'rotate-180 group-hover:-translate-x-1'
-                        : 'group-hover:translate-x-1'
+                    className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 ${
+                      dir === 'rtl' ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'
                     }`}
                   />
                 </span>
@@ -208,27 +194,21 @@ export function HeroSection() {
                 variant="outline"
                 size="lg"
                 onClick={() => scrollToElement('contact')}
-                className={`group font-semibold px-8 py-4 text-lg rounded-2xl border-2 border-purple-300 dark:border-green-400 text-purple-700 dark:text-green-300 hover:bg-purple-50 dark:hover:bg-green-900/20 hover:border-purple-400 dark:hover:border-green-300 transform hover:scale-105 transition-all duration-300 ${
+                className={`group font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl sm:rounded-2xl border-2 border-purple-300 dark:border-green-400 text-purple-700 dark:text-green-300 hover:bg-purple-50 dark:hover:bg-green-900/20 hover:border-purple-400 dark:hover:border-green-300 transform hover:scale-105 transition-all duration-300 ${
                   dir === 'rtl' ? 'font-sahel' : ''
                 }`}
               >
                 {t('hero.ctaSecondary')}
               </Button>
             </div>
-            <br />
 
             {/* Social Links */}
-            <div
-              className={`flex justify-center gap-8 ${
-                dir === 'rtl' ? 'space-x-reverse' : ''
-              } mb-10`}
-              aria-label={t('social links')}
-            >
+            <div className={`flex justify-center gap-4 sm:gap-6 mb-6 sm:mb-8`}>
               {[
                 { icon: Github, href: personalInfo.github, label: 'GitHub' },
                 { icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
                 { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
-                { icon: Phone, href: `tel: ${personalInfo.phone}`, label: 'Phone' },
+                { icon: Phone, href: `tel:${personalInfo.phone}`, label: 'Phone' },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -236,37 +216,32 @@ export function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="group inline-flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:bg-purple-200 dark:hover:bg-green-700 hover:border-purple-400 dark:hover:border-green-500 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-green-400 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-transparent"
+                  className="group inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gray-100 dark:bg-gray-800 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:bg-purple-200 dark:hover:bg-green-700 hover:border-purple-400 dark:hover:border-green-500 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-green-400 transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-green-400"
                 >
-                  <Icon className="w-8 h-8" />
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
               ))}
             </div>
-            <br />
 
             {/* Scroll Indicator */}
             <button
               onClick={() => scrollToElement('showcase')}
-              className={`group p-5 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-purple-100/30 dark:hover:bg-green-900 transition-all duration-300 animate-bounce hover:animate-none ${
+              className={`p-3 sm:p-4 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-purple-100/30 dark:hover:bg-green-900 transition-all duration-300 animate-bounce hover:animate-none ${
                 isVisible ? 'opacity-100' : 'opacity-0'
               }`}
               aria-label="Scroll down to showcase section"
             >
-              <ChevronDown className="w-8 h-8 text-purple-600 dark:text-green-400 transition-colors duration-300" />
+              <ChevronDown className="w-6 h-6 sm:w-7 sm:h-7 text-purple-600 dark:text-green-400 transition-colors duration-300" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Custom CSS for breathing animation */}
+      {/* Breathing animation */}
       <style jsx>{`
         @keyframes breathe {
-          0%, 100% {
-            transform: scale(1) translateY(0px);
-          }
-          50% {
-            transform: scale(1.05) translateY(-8px);
-          }
+          0%, 100% { transform: scale(1) translateY(0px); }
+          50% { transform: scale(1.05) translateY(-8px); }
         }
       `}</style>
     </section>
