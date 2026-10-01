@@ -127,6 +127,39 @@ body {
 .animate-float-slow { animation: float 8s ease-in-out infinite; }
 .animate-pulse-slow { animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
+@keyframes rotate-border {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.rotating-border {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 12px;
+  animation: rotate-border 3s linear infinite;
+  z-index: 1;
+}
+
+.rotating-border.light {
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(0,0,0,0.3) 10deg, transparent 20deg);
+}
+
+.rotating-border.dark {
+  background: conic-gradient(from 0deg, transparent 0deg, rgb(34, 211, 238) 10deg, transparent 20deg);
+}
+
+.image-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 .loading-spinner {
   border: 3px solid #f3f3f3;
   border-top: 3px solid rgb(147, 51, 234);
@@ -134,6 +167,169 @@ body {
   width: 36px;
   height: 36px;
   animation: spin 1s linear infinite;
+}
+
+/* Marvel Cinematic Intro Keyframes */
+@keyframes marvel-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(250%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes marvel-flicker {
+  0%, 100% { opacity: 0.98; }
+  20% { opacity: 0.92; }
+  45% { opacity: 1; }
+  70% { opacity: 0.94; }
+  85% { opacity: 0.96; }
+}
+
+@keyframes marvel-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 35px rgba(220, 38, 38, 0.4), inset 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(239, 68, 68, 0.7), inset 0 0 30px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.animate-marvel-sweep {
+  animation: marvel-sweep 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-marvel-flicker {
+  animation: marvel-flicker 0.15s infinite;
+}
+
+.animate-marvel-glow {
+  animation: marvel-pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* Animatic Intro Red Typography with Mode-Adaptive Glow */
+.animatic-name-light {
+  color: #dc2626;
+  text-shadow: 
+    0 0 12px rgba(0, 0, 0, 0.9),
+    0 0 28px rgba(0, 0, 0, 0.75),
+    0 0 50px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(220, 38, 38, 0.35);
+}
+
+.animatic-name-dark {
+  color: #ef4444;
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.95),
+    0 0 35px rgba(255, 255, 255, 0.7),
+    0 0 65px rgba(255, 255, 255, 0.45),
+    0 0 95px rgba(239, 68, 68, 0.5);
+}
+
+/* Cat Guide Animations */
+@keyframes cat-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes cat-tail {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(12deg); }
+}
+
+@keyframes cat-zzz {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  40% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate(12px, -22px) scale(1.1); }
+}
+
+@keyframes cat-pop {
+  0% { transform: scale(0.85) translateY(10px); opacity: 0; }
+  60% { transform: scale(1.05) translateY(-2px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.animate-cat-float {
+  animation: cat-float 3s ease-in-out infinite;
+}
+
+.animate-cat-tail {
+  transform-origin: bottom left;
+  animation: cat-tail 2.4s ease-in-out infinite;
+}
+
+.animate-cat-zzz {
+  animation: cat-zzz 2.5s ease-out infinite;
+}
+
+.animate-cat-pop {
+  animation: cat-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Cat Walking Paws & Bobbing Animations - Calm, Delicate Stroll */
+@keyframes cat-paw-front {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(-5deg); }
+}
+
+@keyframes cat-paw-back {
+  0%, 100% { transform: translateY(-2px) rotate(-5deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes cat-body-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.2px); }
+}
+
+.animate-cat-paw-front {
+  animation: cat-paw-front 1.2s ease-in-out infinite;
+}
+
+.animate-cat-paw-back {
+  animation: cat-paw-back 1.2s ease-in-out infinite;
+}
+
+.animate-cat-body-bob {
+  animation: cat-body-bob 1.2s ease-in-out infinite;
+}
+
+/* Cat Licking Paw & Belly Breathing */
+@keyframes cat-lick {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-1.5px) rotate(6deg); }
+}
+
+@keyframes cat-belly-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+
+.animate-cat-lick {
+  transform-origin: top right;
+  animation: cat-lick 1.3s ease-in-out infinite;
+}
+
+.animate-cat-belly {
+  transform-origin: center;
+  animation: cat-belly-breathe 3s ease-in-out infinite;
+}
+
+/* Fluid Posture Cross-Fade */
+@keyframes cat-pose-in {
+  0% { opacity: 0.15; transform: scale(0.96); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-cat-pose {
+  animation: cat-pose-in 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: opacity, transform;
 }
 
 .dark .loading-spinner {

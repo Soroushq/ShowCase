@@ -27,6 +27,7 @@ export function Navigation() {
   const navItems = [
     { key: 'home', href: '#hero' },
     { key: 'work', href: '#showcase' },
+    { key: 'invention', href: '#invention' },
     { key: 'about', href: '#about' },
     { key: 'contact', href: '#contact' },
   ]

@@ -12,6 +12,7 @@ import {
   Database,
   Wrench,
   Sparkles,
+  ShieldCheck,
 } from 'lucide-react'
 import Image from 'next/image'
 
@@ -138,6 +139,11 @@ export function AboutSection() {
       icon: Award,
     },
     {
+      value: "#114350",
+      label: t('about.patent') || (language === 'fa' ? 'اختراع رسمی' : 'Official Patent'),
+      icon: ShieldCheck,
+    },
+    {
       value: personalInfo.projectsCompleted.toString(),
       label: t('about.projects'),
       icon: Target,
@@ -225,7 +231,7 @@ export function AboutSection() {
             </div>
 
             {/* Stats */}
-            <div className="grid flex-1 grid-cols-3 gap-3">
+            <div className="grid flex-1 grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
               {stats.map((stat, i) => {
                 const Icon = stat.icon
                 return (

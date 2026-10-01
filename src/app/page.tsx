@@ -1,29 +1,20 @@
 // File: src/app/page.tsx
 'use client'
 
-import dynamic from 'next/dynamic'
 import { Navigation } from './components/sections/Navigation'
 import { HeroSection } from './components/sections/HeroSection'
-import { LanguageProvider } from './components/providers/LanguageProvider'
-
-const ShowcaseSection = dynamic(
-  () => import('./components/sections/ShowcaseSection').then(m => m.ShowcaseSection),
-  { ssr: true, loading: () => <div className="section-padding container-width">Loading showcase…</div> }
-)
-
-const AboutSection = dynamic(
-  () => import('./components/sections/AboutSection').then(m => m.AboutSection),
-  { ssr: true, loading: () => <div className="section-padding container-width">Loading about…</div> }
-)
-
-const ContactSection = dynamic(
-  () => import('./components/sections/ContactSection').then(m => m.ContactSection),
-  { ssr: true, loading: () => <div className="section-padding container-width">Loading contact…</div> }
-)
+import { ShowcaseSection } from './components/sections/ShowcaseSection'
+import { InventionSection } from './components/sections/InventionSection'
+import { AboutSection } from './components/sections/AboutSection'
+import { ContactSection } from './components/sections/ContactSection'
+import { MarvelIntro } from './components/ui/MarvelIntro'
+import { CatGuide } from './components/ui/CatGuide'
 
 export default function Home() {
   return (
-    <LanguageProvider>
+    <>
+      <MarvelIntro />
+      <CatGuide />
       <main
         id="main"
         className="
@@ -37,9 +28,10 @@ export default function Home() {
         <Navigation />
         <HeroSection />
         <ShowcaseSection />
+        <InventionSection />
         <AboutSection />
         <ContactSection />
       </main>
-    </LanguageProvider>
+    </>
   )
 }

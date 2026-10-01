@@ -26,7 +26,14 @@ const sahel = localFont({
   ],
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'
+function getValidSiteUrl(): string {
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL
+  if (!envUrl) return 'https://soroushqary.me'
+  if (envUrl.startsWith('http://') || envUrl.startsWith('https://')) return envUrl
+  return `https://${envUrl}`
+}
+
+const siteUrl = getValidSiteUrl()
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

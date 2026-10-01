@@ -3,15 +3,19 @@
 
 import { useEffect, useState } from 'react'
 import { Button } from '@/app/components/ui/Button'
-import { Github, Linkedin, Mail, ArrowRight, Terminal } from 'lucide-react'
+import { Github, Linkedin, Mail, ArrowRight, Terminal, Clapperboard } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
 import { scrollToElement } from '@/app/lib/utils'
 import { personalInfo } from '@/app/data/portfolio'
 
 export function HeroSection() {
-  const { t, dir, language } = useLanguage()
+  const { dir, language } = useLanguage()
   const [isVisible, setIsVisible] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+
+  const triggerReplayIntro = () => {
+    window.dispatchEvent(new CustomEvent('replay-marvel-intro'))
+  }
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100)
@@ -22,39 +26,39 @@ export function HeroSection() {
   const surnameDisplay = language === 'fa' ? 'قاری' : 'Qary'
   
   const shortDescription = language === 'fa' 
-    ? 'توسعه‌دهنده خلاق وب. برای جزئیات نگه دارید.'
-    : 'Creative Web Developer. Hover for specs.'
+    ? 'معمار نرم‌افزار، توسعه‌دهنده وب و مخترع ثبت‌شده. برای جزئیات نگه دارید.'
+    : 'Full-Stack Architect, Web Engineer & Patented Inventor. Hover for specs.'
 
   // Structured data for the description to allow specific highlighting
   const descriptionContent = [
-    { text: "I craft modern web apps that are ", highlight: false },
+    { text: "I architect modern digital platforms that are ", highlight: false },
     { text: "blazing fast", highlight: true },
-    { text: ", accessible, and a joy to use.", highlight: false },
+    { text: ", privacy-first, and deeply human.", highlight: false },
     { break: true },
-    { text: "• Front-end: ", highlight: false },
-    { text: "React, Next.js, Angular & TypeScript", highlight: true },
+    { text: "• Innovation: ", highlight: false },
+    { text: "Officially Patented E-Commerce Engine (#114350)", highlight: true },
     { break: true },
-    { text: "• Back-end: ", highlight: false },
-    { text: "Node.js, API design, Docker & VPS", highlight: true },
+    { text: "• Front-end & PWA: ", highlight: false },
+    { text: "React, Next.js 15, Angular & TypeScript", highlight: true },
     { break: true },
-    { text: "• Design: ", highlight: false },
-    { text: "TailwindCSS, SEO & Admin Dashboards", highlight: true }
+    { text: "• Back-end & Infra: ", highlight: false },
+    { text: "Node.js, Docker, VPS, Cloudflare & Offline-First Systems", highlight: true }
   ]
   
   // Farsi version
   const descriptionContentFa = [
-    { text: "طراحی و ساخت وب‌اپلیکیشن‌های مدرن، ", highlight: false },
+    { text: "طراحی و توسعه پلتفرم‌های دیجیتال مدرن، ", highlight: false },
     { text: "فوق‌سریع", highlight: true },
-    { text: " و دسترس‌پذیر.", highlight: false },
+    { text: "، امن و متعهد به حریم خصوصی.", highlight: false },
     { break: true },
-    { text: "• فرانت‌اند: ", highlight: false },
-    { text: "React, Next.js, Angular & TypeScript", highlight: true },
+    { text: "• نوآوری و ثبت اختراع: ", highlight: false },
+    { text: "سازوکار ثبت‌شده تجارت الکترونیک (شماره ثبت ۱۱۴۳۵۰)", highlight: true },
     { break: true },
-    { text: "• بک‌اند: ", highlight: false },
-    { text: "Node.js, API design, Docker & VPS", highlight: true },
+    { text: "• فرانت‌اند و وب‌اپلیکیشن: ", highlight: false },
+    { text: "React، Next.js 15، Angular و TypeScript", highlight: true },
     { break: true },
-    { text: "• طراحی: ", highlight: false },
-    { text: "TailwindCSS, SEO & Admin Dashboards", highlight: true }
+    { text: "• بک‌اند و زیرساخت: ", highlight: false },
+    { text: "Node.js، داکر، سرورهای VPS و سیستم‌های آفلاین‌محور", highlight: true }
   ]
 
   const activeContent = language === 'fa' ? descriptionContentFa : descriptionContent
@@ -70,9 +74,9 @@ export function HeroSection() {
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col items-center text-center">
         
-        {/* Status Pill */}
+        {/* Status Pill & Cinematic Marvel Intro Trigger */}
         <div
-          className={`mb-10 transition-all duration-1000 ease-out ${
+          className={`mb-10 flex flex-wrap items-center justify-center gap-3 transition-all duration-1000 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
@@ -85,6 +89,18 @@ export function HeroSection() {
               {language === 'fa' ? 'آماده پروژه' : 'ONLINE / AVAILABLE'}
             </span>
           </div>
+
+          <button
+            type="button"
+            onClick={triggerReplayIntro}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-red-500/40 bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 text-[11px] font-bold tracking-wider uppercase transition-all duration-200 hover:scale-105 shadow-sm cursor-pointer"
+            title="Watch Animatic Intro"
+          >
+            <Clapperboard className="w-3.5 h-3.5" />
+            <span className={language === 'fa' ? 'font-sahel' : ''}>
+              {language === 'fa' ? 'اینترو انیماتیک' : 'ANIMATIC INTRO'}
+            </span>
+          </button>
         </div>
 
         {/* Massive Name */}
@@ -109,11 +125,13 @@ export function HeroSection() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           } ${language === 'fa' ? 'font-sahel' : ''}`}
         >
-          <span>Next.js Specialist</span>
+          <span>{language === 'fa' ? 'معمار فول‌استک' : 'Full-Stack Architect'}</span>
           <span className="text-neutral-300 dark:text-neutral-700 text-sm">/</span>
-          <span>Software Engineer</span>
+          <span className="text-neutral-900 dark:text-cyan-400 font-semibold">{language === 'fa' ? 'مخترع رسمی' : 'Patented Inventor'}</span>
           <span className="text-neutral-300 dark:text-neutral-700 text-sm">/</span>
-          <span>Creative Dev</span>
+          <span>{language === 'fa' ? 'متخصص Next.js' : 'Next.js Specialist'}</span>
+          <span className="text-neutral-300 dark:text-neutral-700 text-sm">/</span>
+          <span>{language === 'fa' ? 'طراح محصول' : 'Product Builder'}</span>
         </h2>
 
         {/* Interactive Description - The "HUD" Effect */}

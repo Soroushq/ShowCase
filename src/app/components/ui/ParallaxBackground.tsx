@@ -21,8 +21,6 @@ export function ParallaxBackground({
     setMounted(true)
   }, [])
 
-  if (!mounted) return <div className={className}>{children}</div>
-
   const renderPattern = () => {
     switch (variant) {
       case 'geometric':
@@ -114,7 +112,7 @@ export function ParallaxBackground({
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
-      {renderPattern()}
+      {mounted && renderPattern()}
       <div className="relative z-10">
         {children}
       </div>

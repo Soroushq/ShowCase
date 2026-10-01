@@ -2,8 +2,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { buttonVariants } from '@/app/components/ui/Button'
-import { Mail, MessageCircle, Github, Linkedin, Phone, MapPin, Send } from 'lucide-react'
+import { Mail, Github, Linkedin, Phone, MapPin, Send } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
 import { socialLinks, personalInfo } from '@/app/data/portfolio'
 import { cn } from '@/app/lib/utils'
