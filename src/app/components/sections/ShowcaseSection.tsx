@@ -2,7 +2,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ExternalLink, Eye, X, ChevronDown, AlertTriangle, Sparkles, Lock, Mail, TrendingUp } from 'lucide-react'
+import { ExternalLink, Eye, X, ChevronDown, AlertTriangle, Sparkles, Lock, Mail, TrendingUp, Radio, Headphones, Send } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
 import { portfolioData, portfolioDataFa } from '@/app/data/portfolio'
 import { cn } from '@/app/lib/utils'
@@ -739,6 +739,59 @@ export function ShowcaseSection() {
                 </div>
               )
             })}
+          </div>
+
+          {/* Newly Established / Work In Progress Podcast Card: Technosaad */}
+          <div className="mt-14 sm:mt-18 pt-8 border-t border-neutral-200/80 dark:border-neutral-800/80">
+            <div className="relative overflow-hidden rounded-2xl border-2 border-cyan-500/30 dark:border-cyan-500/20 bg-gradient-to-br from-white via-cyan-50/20 to-neutral-50 dark:from-neutral-900/90 dark:via-cyan-950/20 dark:to-neutral-950 p-6 sm:p-8 shadow-xl">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div className="flex items-start gap-4 sm:gap-5 flex-1">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cyan-500/10 dark:bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400 flex-shrink-0 shadow-sm">
+                    <Radio className="w-6 h-6 sm:w-7 sm:h-7 animate-pulse" />
+                  </div>
+
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/30">
+                        <Sparkles className="w-3 h-3 text-amber-500" />
+                        <span>{language === 'fa' ? 'در حال توسعه / پادکست نوپا' : 'WORK IN PROGRESS / PODCAST'}</span>
+                      </span>
+
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                        <Headphones className="w-3 h-3" />
+                        <span>TechnoSaad (تکنوصاد)</span>
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-2">
+                      {language === 'fa'
+                        ? 'پادکست تکنوصاد | تلفیق تکنولوژی و اقتصاد'
+                        : 'TechnoSaad Podcast | Technology & Economics Insights'}
+                    </h3>
+
+                    <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed max-w-3xl">
+                      {language === 'fa'
+                        ? 'خلاصه آخرین مقالات و مجلات به روز درحوزه اقتصاد و تکنولوژی، با هدف افزایش آگاهی همگانی و به روز بودن و آشنایی با مفاهیم روز جهان و ارائه تحلیل های بومی سازی شده.'
+                        : 'Summaries and localized analyses of the latest cutting-edge articles and journals in Economics & Technology, aimed at raising public awareness, staying current with global breakthroughs, and fostering tech-economic literacy.'}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Direct Telegram Channel Link */}
+                <div className="flex sm:flex-shrink-0 items-center">
+                  <a
+                    href="https://t.me/technosaad"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm shadow-lg shadow-cyan-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>{language === 'fa' ? 'عضویت در کانال تلگرام پادکست' : 'Join on Telegram @technosaad'}</span>
+                    <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

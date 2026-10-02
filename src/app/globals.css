@@ -332,6 +332,103 @@ body {
   will-change: opacity, transform;
 }
 
+/* Cat Guide Animation Specs */
+@keyframes cat-subtle-breathe {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.02); }
+}
+
+@keyframes cat-micro-nod {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes cat-deep-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.03); opacity: 0.95; }
+}
+
+.animate-cat-subtle-breathe {
+  transform-origin: bottom center;
+  animation: cat-subtle-breathe 2.5s ease-in-out infinite;
+}
+
+.animate-cat-micro-nod {
+  animation: cat-micro-nod 0.8s ease-in-out infinite;
+}
+
+.animate-cat-deep-breathe {
+  transform-origin: center;
+  animation: cat-deep-breathe 4s ease-in-out infinite;
+}
+
+/* Exact Idle Behaviors from JSON spec */
+@keyframes cat-tail-swish {
+  0% { transform: rotate(0deg); }
+  33% { transform: rotate(4deg); }
+  66% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes cat-blink {
+  0%, 90%, 100% { opacity: 1; }
+  93%, 97% { opacity: 0; }
+}
+
+.animate-cat-tail-swish {
+  transform-origin: bottom left;
+  animation: cat-tail-swish 3s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.animate-cat-blink {
+  animation: cat-blink 4s ease-in-out infinite;
+}
+
+/* Natural Weighted Feline Walking Gait (Joint Pivots - Non-spider) */
+@keyframes cat-step-front {
+  0% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+  100% { transform: rotate(-8deg); }
+}
+
+@keyframes cat-step-back {
+  0% { transform: rotate(8deg); }
+  50% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+
+@keyframes cat-walk-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.2px); }
+}
+
+.animate-cat-step-front {
+  transform-origin: 66px 42px;
+  animation: cat-step-front 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-cat-step-back {
+  transform-origin: 32px 42px;
+  animation: cat-step-back 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-cat-walk-bob {
+  animation: cat-walk-bob 0.45s ease-in-out infinite;
+}
+
+/* Ambient Ethereal Mesh Gradient for Contact Section */
+@keyframes ambient-mesh-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -25px) scale(1.08); }
+  66% { transform: translate(-25px, 20px) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.animate-ambient-mesh {
+  animation: ambient-mesh-drift 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
 .dark .loading-spinner {
   border: 3px solid rgb(55, 65, 81);
   border-top: 3px solid rgb(34, 197, 94);
