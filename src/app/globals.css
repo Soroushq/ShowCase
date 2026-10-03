@@ -344,8 +344,8 @@ body {
 }
 
 @keyframes cat-deep-breathe {
-  0%, 100% { transform: scale(1); opacity: 0.85; }
-  50% { transform: scale(1.03); opacity: 0.95; }
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
 }
 
 .animate-cat-subtle-breathe {
@@ -427,6 +427,86 @@ body {
 .animate-ambient-mesh {
   animation: ambient-mesh-drift 18s ease-in-out infinite alternate;
   will-change: transform;
+}
+
+/* Playful Cat Swat & Yarn Bounce Keyframes */
+@keyframes cat-paw-swat {
+  0%, 100% { transform: rotate(0deg); }
+  35% { transform: rotate(-24deg) translateY(-2px); }
+  60% { transform: rotate(18deg) translateY(2px); }
+}
+
+@keyframes cat-yarn-bounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(45deg); }
+}
+
+@keyframes cat-yawn-stretch {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+.animate-cat-paw-swat {
+  transform-origin: 64px 42px;
+  animation: cat-paw-swat 1.2s ease-in-out infinite;
+}
+
+.animate-cat-yarn-bounce {
+  animation: cat-yarn-bounce 1.5s ease-in-out infinite;
+}
+
+.animate-cat-yawn-stretch {
+  animation: cat-yawn-stretch 2s ease-in-out infinite;
+}
+
+/* Expressive Micro Animations for Cat */
+@keyframes cat-ear-flick {
+  0%, 85%, 100% { transform: rotate(0deg); }
+  90% { transform: rotate(-8deg); }
+  95% { transform: rotate(4deg); }
+}
+
+@keyframes cat-tail-wag-lively {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(8deg); }
+  75% { transform: rotate(-8deg); }
+}
+
+.animate-cat-ear-flick {
+  transform-origin: bottom center;
+  animation: cat-ear-flick 4.5s ease-in-out infinite;
+}
+
+.animate-cat-tail-wag-lively {
+  transform-origin: bottom left;
+  animation: cat-tail-wag-lively 1.2s ease-in-out infinite;
+}
+
+/* Paw Licking & Grooming */
+@keyframes cat-lick-paw {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-3px) rotate(-14deg); }
+  50% { transform: translateY(-1px) rotate(-8deg); }
+  75% { transform: translateY(-4px) rotate(-18deg); }
+}
+
+/* Tail Chasing Spin */
+@keyframes cat-tail-chase-spin {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg) translateY(-1px); }
+  50% { transform: rotate(0deg) translateY(0); }
+  75% { transform: rotate(8deg) translateY(-1px); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-cat-lick-paw {
+  transform-origin: 58px 46px;
+  animation: cat-lick-paw 1.4s ease-in-out infinite;
+}
+
+.animate-cat-chase-tail {
+  transform-origin: center bottom;
+  animation: cat-tail-chase-spin 1.8s ease-in-out infinite;
 }
 
 .dark .loading-spinner {
