@@ -31,6 +31,17 @@ export interface SocialLink {
 
 export const portfolioData: PortfolioItem[] = [
   {
+    id: 10,
+    title: "FinanceSQ - Live Dollar Currency Rate & Smart Inventory OS",
+    description: "An advanced financial, inventory, and dynamic pricing management application built for real-time currency fluctuations. Enables businesses to instantly synchronize and update inventory prices linked to the live dollar exchange rate, and automatically compute customer pricing, margins, and profit benefits through fully customizable formulas. Offers an installable Android APK version and a cross-platform PWA for universal web and iOS/iPhone users.",
+    image: "/pics/financesq.jpg",
+    url: "https://financesq.vercel.app/",
+    technologies: ["Installable APK", "Universal PWA (iOS/Web)", "Live Dollar Rate API", "Inventory Stock Control", "Dynamic Profit Formulas", "React", "TypeScript", "TailwindCSS"],
+    category: "web",
+    featured: true,
+    badge: "🚀 NEW FEATURED • APK & PWA"
+  },
+  {
     id: 8,
     title: "SQPlanner - 24/7 Habit, Task & Financial Life OS",
     description: "An all-in-one personal operating system combining intelligent 24/7 habit tracking, streak milestones, task planning, and comprehensive personal financial budgeting. Engineered as a fully offline-first, privacy-focused PWA that stores all data locally. Delivers seamless adaptability across 5 custom device resolutions and responsive breakpoints, backed by frequent updates and modern features.",
@@ -128,6 +139,17 @@ export const portfolioData: PortfolioItem[] = [
 ]
 
 export const portfolioDataFa: PortfolioItem[] = [
+  {
+    id: 10,
+    title: "فایننس‌اس‌کیو - سیستم هوشمند انبارداری و قیمت‌گذاری زنده دلاری",
+    description: "یک وب‌اپلیکیشن جامع مالی، انبارداری و مدیریت سودآوری هوشمند. امکان به‌روزرسانی لحظه‌ای قیمت کالاها با تغییرات زنده نرخ دلار و محاسبه خودکار قیمت فروش، حاشیه سود و منافع مالی بر اساس فرمول‌های دلخواه و سفارشی‌سازی‌شده کسب‌وکار. همراه با نسخه نصبی اندروید (APK) و نسخه وب‌پیشرو (PWA) برای دسترسی همگانی و کاربران آیفون (iOS).",
+    image: "/pics/financesq.jpg",
+    url: "https://financesq.vercel.app/",
+    technologies: ["نسخه نصبی APK", "نسخه PWA (آیفون و وب)", "نرخ زنده دلار", "انبارداری و مدیریت کالا", "فرمول‌های سود سفارشی", "React", "TypeScript", "TailwindCSS"],
+    category: "web",
+    featured: true,
+    badge: "🚀 پروژه ویژه جدید • APK و PWA"
+  },
   {
     id: 8,
     title: "پلنر هوشمند ۲۴/۷ - مدیریت عادات، برنامه‌ریزی و حسابداری",

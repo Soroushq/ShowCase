@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react'
 import { Button } from '@/app/components/ui/Button'
-import { Github, Linkedin, Mail, ArrowRight, Terminal, Clapperboard } from 'lucide-react'
+import { Github, Linkedin, Mail, ArrowRight, Terminal } from 'lucide-react'
 import { useLanguage } from '@/app/hooks/useLanguage'
 import { scrollToElement } from '@/app/lib/utils'
 import { personalInfo } from '@/app/data/portfolio'
@@ -12,10 +12,6 @@ export function HeroSection() {
   const { dir, language } = useLanguage()
   const [isVisible, setIsVisible] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
-
-  const triggerReplayIntro = () => {
-    window.dispatchEvent(new CustomEvent('replay-marvel-intro'))
-  }
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100)
@@ -72,36 +68,7 @@ export function HeroSection() {
       {/* Grid Background (Gaming/Tech Vibe) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col items-center text-center">
-        
-        {/* Status Pill & Cinematic Marvel Intro Trigger */}
-        <div
-          className={`mb-10 flex flex-wrap items-center justify-center gap-3 transition-all duration-1000 ease-out ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
-        >
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-black shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(34,211,238,0.15)]">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500" />
-            </span>
-            <span className={`text-[11px] font-bold tracking-widest uppercase text-neutral-600 dark:text-cyan-400 ${language === 'fa' ? 'font-sahel' : ''}`}>
-              {language === 'fa' ? 'آماده پروژه' : 'ONLINE / AVAILABLE'}
-            </span>
-          </div>
-
-          <button
-            type="button"
-            onClick={triggerReplayIntro}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-red-500/40 bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 text-[11px] font-bold tracking-wider uppercase transition-all duration-200 hover:scale-105 shadow-sm cursor-pointer"
-            title="Watch Animatic Intro"
-          >
-            <Clapperboard className="w-3.5 h-3.5" />
-            <span className={language === 'fa' ? 'font-sahel' : ''}>
-              {language === 'fa' ? 'اینترو انیماتیک' : 'ANIMATIC INTRO'}
-            </span>
-          </button>
-        </div>
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col items-center text-center pt-8 sm:pt-12">
 
         {/* Massive Name */}
         <h1

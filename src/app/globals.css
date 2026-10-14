@@ -48,10 +48,48 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* RTL font and direction improvements (opt-in utility) */
+@font-face {
+  font-family: 'BonyadKoodak';
+  src: url('/fonts/koodak/BKoodakBold.woff') format('woff'),
+       url('/fonts/koodak/BKoodakBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BonyadKoodak';
+  src: url('/fonts/koodak/BKoodakBold.woff') format('woff'),
+       url('/fonts/koodak/BKoodakBold.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-koodak {
+  font-family: 'BonyadKoodak', var(--font-koodak), var(--font-sahel), system-ui, sans-serif !important;
+}
+
+/* RTL font and direction improvements (friendly modern Persian typography) */
 [dir="rtl"] {
   font-family: var(--font-sahel), var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   text-align: right;
+}
+
+/* Headings in Farsi adopt the warm, friendly Bonyad Koodak font */
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4 {
+  font-family: 'BonyadKoodak', var(--font-koodak), var(--font-sahel), system-ui, sans-serif;
+  letter-spacing: normal;
+}
+
+/* Eliminate harsh/machine-like monospace font in Persian RTL */
+[dir="rtl"] .font-mono,
+html[dir="rtl"] .font-mono,
+body[dir="rtl"] .font-mono {
+  font-family: var(--font-sahel), 'BonyadKoodak', system-ui, sans-serif !important;
+  letter-spacing: normal !important;
 }
 
 .rtl-row-reverse {

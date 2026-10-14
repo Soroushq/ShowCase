@@ -26,6 +26,15 @@ const sahel = localFont({
   ],
 })
 
+const koodak = localFont({
+  variable: '--font-koodak',
+  display: 'swap',
+  src: [
+    { path: '../../public/fonts/koodak/BKoodakBold.woff', weight: '700', style: 'normal' },
+    { path: '../../public/fonts/koodak/BKoodakBold.ttf', weight: '700', style: 'normal' },
+  ],
+})
+
 function getValidSiteUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_SITE_URL
   if (!envUrl) return 'https://soroushqary.me'
@@ -88,7 +97,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sahel.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sahel.variable} ${koodak.variable}`}>
       <body className={`${inter.className} antialiased transition-colors duration-300`}>
         <a
           href="#main"

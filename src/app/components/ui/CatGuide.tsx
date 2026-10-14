@@ -597,17 +597,26 @@ export function CatGuide() {
                   <Smile className="w-5 h-5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className={`font-bold text-xs sm:text-sm text-neutral-900 dark:text-cyan-300 flex items-center justify-between gap-1.5 ${isFa ? 'font-sahel' : ''}`}>
-                    <span>{isFa ? 'همراه با پیشی راهنما' : 'Playful Guide Cat'}</span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 font-bold flex-shrink-0">
-                      {isFa ? 'پیشی 🐾' : 'WITH CAT 🐾'}
-                    </span>
-                  </div>
-                  <p className={`text-[11px] text-neutral-600 dark:text-neutral-300 mt-0.5 truncate ${isFa ? 'font-sahel' : ''}`}>
-                    {isFa
-                      ? 'گربه خطی ملوس که در پایین صفحه می‌چرخد و بخش‌ها را معرفی می‌کند.'
-                      : 'Cute line-art cat that guides you & can play when requested.'}
-                  </p>
+                  {isFa ? (
+                    <div className="py-0.5">
+                      <div className="font-koodak text-sm sm:text-base font-bold text-neutral-900 dark:text-cyan-300 flex items-center justify-between">
+                        <span>نسخه با گوربه!</span>
+                        <span className="text-sm">🐾</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="font-bold text-xs sm:text-sm text-neutral-900 dark:text-cyan-300 flex items-center justify-between gap-1.5">
+                        <span>Playful Guide Cat</span>
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 font-bold flex-shrink-0">
+                          WITH CAT 🐾
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-neutral-600 dark:text-neutral-300 mt-0.5 truncate">
+                        Cute line-art cat that guides you & can play when requested.
+                      </p>
+                    </>
+                  )}
                 </div>
               </button>
 
@@ -623,17 +632,26 @@ export function CatGuide() {
                   <Briefcase className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className={`font-bold text-xs sm:text-sm text-neutral-900 dark:text-white flex items-center justify-between gap-1.5 ${isFa ? 'font-sahel' : ''}`}>
-                    <span>{isFa ? 'رسمی و شرکتی' : 'Strict & Professional'}</span>
-                    <span className="text-[10px] font-mono text-neutral-400 uppercase flex-shrink-0">
-                      {isFa ? 'بدون پیشی' : 'NO CAT'}
-                    </span>
-                  </div>
-                  <p className={`text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5 truncate ${isFa ? 'font-sahel' : ''}`}>
-                    {isFa
-                      ? 'محیط کاملاً مینیمال و متمرکز کاری بدون دستیار فانتزی.'
-                      : 'Minimalist interface focused purely on technical work.'}
-                  </p>
+                  {isFa ? (
+                    <div className="py-0.5">
+                      <div className="font-koodak text-sm sm:text-base font-bold text-neutral-900 dark:text-white flex items-center justify-between">
+                        <span>نسخه بدون گوربه (رسمی)</span>
+                        <span className="text-xs text-neutral-400">💼</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="font-bold text-xs sm:text-sm text-neutral-900 dark:text-white flex items-center justify-between gap-1.5">
+                        <span>Strict & Professional</span>
+                        <span className="text-[10px] font-mono text-neutral-400 uppercase flex-shrink-0">
+                          NO CAT
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">
+                        Minimalist interface focused purely on technical work.
+                      </p>
+                    </>
+                  )}
                 </div>
               </button>
 
