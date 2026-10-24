@@ -32,14 +32,14 @@ export interface SocialLink {
 export const portfolioData: PortfolioItem[] = [
   {
     id: 10,
-    title: "FinanceSQ - Live Dollar Currency Rate & Smart Inventory OS",
-    description: "An advanced financial, inventory, and dynamic pricing management application built for real-time currency fluctuations. Enables businesses to instantly synchronize and update inventory prices linked to the live dollar exchange rate, and automatically compute customer pricing, margins, and profit benefits through fully customizable formulas. Offers an installable Android APK version and a cross-platform PWA for universal web and iOS/iPhone users.",
-    image: "/pics/financesq.jpg",
-    url: "https://financesq.vercel.app/",
-    technologies: ["Installable APK", "Universal PWA (iOS/Web)", "Live Dollar Rate API", "Inventory Stock Control", "Dynamic Profit Formulas", "React", "TypeScript", "TailwindCSS"],
+    title: "Behnerkh - Real-Time Inventory & Dollar Market Valuation OS",
+    description: "\"Value of inventory at market rate\" — A specialized financial and inventory management platform designed to prevent losses from currency volatility. Empowers merchants and businesses to maintain live, synchronized inventory valuation linked directly to real-time dollar rates, calculating dynamic profit margins and custom pricing formulas so they never sell at a loss. Features an installable Android APK and a cross-platform PWA for universal web and iOS users.",
+    image: "/pics/behnerkh.jpg",
+    url: "https://behnerkh.vercel.app/",
+    technologies: ["Market-Rate Pricing", "Live Dollar Rate API", "Custom Profit Formulas", "Smart Inventory", "Installable APK", "PWA (iOS/Web)", "React", "TypeScript", "TailwindCSS"],
     category: "web",
     featured: true,
-    badge: "🚀 NEW FEATURED • APK & PWA"
+    badge: "🚀 BEHNERKH • MARKET RATE OS"
   },
   {
     id: 8,
@@ -141,14 +141,14 @@ export const portfolioData: PortfolioItem[] = [
 export const portfolioDataFa: PortfolioItem[] = [
   {
     id: 10,
-    title: "فایننس‌اس‌کیو - سیستم هوشمند انبارداری و قیمت‌گذاری زنده دلاری",
-    description: "یک وب‌اپلیکیشن جامع مالی، انبارداری و مدیریت سودآوری هوشمند. امکان به‌روزرسانی لحظه‌ای قیمت کالاها با تغییرات زنده نرخ دلار و محاسبه خودکار قیمت فروش، حاشیه سود و منافع مالی بر اساس فرمول‌های دلخواه و سفارشی‌سازی‌شده کسب‌وکار. همراه با نسخه نصبی اندروید (APK) و نسخه وب‌پیشرو (PWA) برای دسترسی همگانی و کاربران آیفون (iOS).",
-    image: "/pics/financesq.jpg",
-    url: "https://financesq.vercel.app/",
-    technologies: ["نسخه نصبی APK", "نسخه PWA (آیفون و وب)", "نرخ زنده دلار", "انبارداری و مدیریت کالا", "فرمول‌های سود سفارشی", "React", "TypeScript", "TailwindCSS"],
+    title: "به نرخ ",
+    description: "« ارزش انبار به نرخ بازار» — پلتفرم هوشمند انبارداری و ارزش‌گذاری کالا بر پایه نرخ زنده ارز. این سیستم به کسب‌وکارها و فروشندگان کمک می‌کند قیمت اجناس خود را در کنار انبارداری همواره به روز داشته باشند و در نوسانات ارزی متضرر نشوند، و سود واقعی را بر اساس فرمول‌های سفارشی‌سازی‌شده محاسبه کنند. همراه با نسخه قابل نصب اندروید (APK) و نسخه وب‌پیشرو (PWA) برای دسترسی همگانی و کاربران آیفون (iOS).",
+    image: "/pics/behnerkh.jpg",
+    url: "https://behnerkh.vercel.app/",
+    technologies: ["ارزش انبار به نرخ بازار", "نرخ زنده دلار", "فرمول‌های سود سفارشی", "انبارداری هوشمند", "نسخه نصبی APK", "PWA (آیفون و وب)", "React", "TypeScript", "TailwindCSS"],
     category: "web",
     featured: true,
-    badge: "🚀 پروژه ویژه جدید • APK و PWA"
+    badge: "💎 ارزش انبار به نرخ بازار • APK & PWA"
   },
   {
     id: 8,
